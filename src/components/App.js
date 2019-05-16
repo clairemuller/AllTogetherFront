@@ -3,13 +3,27 @@ import './App.css';
 import NavBar from './NavBar/NavBar'
 import MainContainer from './MainContainer/MainContainer'
 
-function App() {
-  return (
-    <div>
+
+class App extends React.Component {
+  constructor() {
+    super()
+    this.state = {}
+  }
+
+  componentDidMount() {
+    fetch('http://localhost:3000/users')
+    .then(res => res.json())
+    .then(data => console.log(data))
+  }
+
+  render() {
+    return (
+      <div>
       <NavBar />
       <MainContainer />
-    </div>
-  );
+      </div>
+    )
+  }
 }
 
 export default App;
