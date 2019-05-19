@@ -6,19 +6,15 @@ import NavBar from '../NavBar/NavBar';
 
 class MainContainer extends React.Component {
 
-  // componentDidMount() {
-  //   fetch('http://localhost:3000/items')
-  //   .then(res => res.json())
-  //   .then(data => console.log(data))
-  // }
-
   render() {
     return (
       <div>
         main container
-        <NavBar />
+        <NavBar
+          logoutHandler={this.props.logoutHandler} />
         <SearchBar />
-        <ItemsList />
+        <ItemsList
+          items={this.props.items}/>
       </div>
     )
   }

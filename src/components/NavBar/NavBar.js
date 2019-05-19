@@ -3,12 +3,13 @@ import { GoogleLogout } from 'react-google-login';
 import './NavBar.css';
 
 class NavBar extends React.Component {
+
   render() {
     return (
       <div>
         <GoogleLogout
           buttonText="Logout"
-          onLogoutSuccess={this.logout}
+          onLogoutSuccess={this.props.logoutHandler}
           />
       </div>
     )

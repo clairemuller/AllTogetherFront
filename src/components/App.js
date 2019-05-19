@@ -4,18 +4,24 @@ import MainContainer from './MainContainer/MainContainer'
 import LoginPage from './LoginPage'
 // import { BrowserRouter as Router, Route } from 'react-router-dom';
 
+const localhostURL = 'http://localhost:3000/';
+
 class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       user: null,
       loggedIn: false,
-      items: null
+      properties: null,
+      rooms: null,
+      locations: null,
+      items: null,
+      categories: null
     }
-
   }
 
   loginHandler = (googleUser) => {
+    console.log('1. logging in...');
     const user = googleUser.getBasicProfile().getName()
     const loggedIn = googleUser.isSignedIn()
     this.setState({ user, loggedIn }, () => {
@@ -23,8 +29,17 @@ class App extends React.Component {
     });
   }
 
+  logoutHandler = () => {
+    this.setState({
+      user: null,
+      loggedIn: false,
+      items: null
+    })
+  }
+
   findOrCreateUser(user) {
-    fetch('http://localhost:3000/users', {
+    console.log('2. finding user...');
+    fetch(localhostURL + 'users', {
       method: 'POST',
       headers: {
         "Content-Type": "application/json",
@@ -32,17 +47,30 @@ class App extends React.Component {
       },
       body: JSON.stringify({ user })
     })
+    .then(res => res.json())
+    .then(userData => {
+      this.setItems(userData)
+    })
   }
 
-  getItems() {
-
+  setItems(userData) {
+    console.log('3. setting items...');
+    this.setState({
+      properties: userData.properties,
+      rooms: userData.rooms,
+      locations: userData.locations,
+      items: userData.items,
+      categories: userData.categories
+    })
   }
 
   render() {
     return (
       <div>
         {this.state.loggedIn ?
-          <MainContainer items={this.state.items} />
+          <MainContainer
+            items={this.state.items}
+            logoutHandler={this.logoutHandler} />
           :
           <LoginPage loginHandler={this.loginHandler} />}
       </div>

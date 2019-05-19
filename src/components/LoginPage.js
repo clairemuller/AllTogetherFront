@@ -13,11 +13,7 @@ class LoginPage extends React.Component {
   }
 
   failure(response) {
-    console.log('failure response: ',response);
-  }
-
-  logout(response) {
-    console.log('logged out');
+    console.log('failure response: ', response);
   }
 
   async onSignIn(googleUser) {
