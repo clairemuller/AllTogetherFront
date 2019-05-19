@@ -21,7 +21,6 @@ class App extends React.Component {
   }
 
   loginHandler = (googleUser) => {
-    console.log('1. logging in...');
     const user = googleUser.getBasicProfile().getName()
     const loggedIn = googleUser.isSignedIn()
     this.setState({ user, loggedIn }, () => {
@@ -38,7 +37,6 @@ class App extends React.Component {
   }
 
   findOrCreateUser(user) {
-    console.log('2. finding user...');
     fetch(localhostURL + 'users', {
       method: 'POST',
       headers: {
@@ -54,7 +52,6 @@ class App extends React.Component {
   }
 
   setItems(userData) {
-    console.log('3. setting items...');
     this.setState({
       properties: userData.properties,
       rooms: userData.rooms,

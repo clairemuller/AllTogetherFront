@@ -3,14 +3,17 @@ import './ItemsList.css';
 import Item from '../Item/Item';
 
 class ItemsList extends React.Component {
-
   render() {
-    console.log('itemsList props: ', this.props);
     return (
       <div>
         {this.props.items ?
           this.props.items.map(item => {
-            return <Item key={item.id} />
+            return (
+              <Item
+                key={item.id}
+                description={item.description}
+                note={item.note} />
+            )
           })
           : null}
       </div>
