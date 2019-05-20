@@ -5,16 +5,15 @@ import ItemsList from '../ItemsList/ItemsList';
 import NavBar from '../NavBar/NavBar';
 
 class MainContainer extends React.Component {
-
   render() {
     return (
-      <div>
-        main container
+      <div id='mainContainer'>
         <NavBar
-          logoutHandler={this.props.logoutHandler} />
+          logoutHandler={this.props.logoutHandler}
+          name={this.props.state.user} />
         <SearchBar />
         <ItemsList
-          items={this.props.items}/>
+          items={this.props.state.items} />
       </div>
     )
   }

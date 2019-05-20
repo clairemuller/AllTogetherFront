@@ -1,0 +1,20 @@
+#itemsListContainer {
+  border: black;
+  border-style: solid;
+  border-width: 1px;
+  padding: 1%;
+  height: auto;
+}
+
+#itemsListTable {
+  width: 100%;
+}
+
+tr {
+
+}
+
+#tableHeader {
+  text-align: left;
+  background-color: #f1f1f1;
+}

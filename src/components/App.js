@@ -4,7 +4,7 @@ import MainContainer from './MainContainer/MainContainer'
 import LoginPage from './LoginPage'
 // import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-const localhostURL = 'http://localhost:3000/';
+const fetchURL = 'http://localhost:3000/';
 
 class App extends React.Component {
   constructor(props) {
@@ -12,11 +12,7 @@ class App extends React.Component {
     this.state = {
       user: null,
       loggedIn: false,
-      properties: null,
-      rooms: null,
-      locations: null,
-      items: null,
-      categories: null
+      items: []
     }
   }
 
@@ -37,7 +33,7 @@ class App extends React.Component {
   }
 
   findOrCreateUser(user) {
-    fetch(localhostURL + 'users', {
+    fetch(fetchURL + 'users', {
       method: 'POST',
       headers: {
         "Content-Type": "application/json",
@@ -47,17 +43,7 @@ class App extends React.Component {
     })
     .then(res => res.json())
     .then(userData => {
-      this.setItems(userData)
-    })
-  }
-
-  setItems(userData) {
-    this.setState({
-      properties: userData.properties,
-      rooms: userData.rooms,
-      locations: userData.locations,
-      items: userData.items,
-      categories: userData.categories
+      this.setState({ items: userData.items })
     })
   }
 
@@ -66,7 +52,7 @@ class App extends React.Component {
       <div>
         {this.state.loggedIn ?
           <MainContainer
-            items={this.state.items}
+            state={this.state}
             logoutHandler={this.logoutHandler} />
           :
           <LoginPage loginHandler={this.loginHandler} />}
