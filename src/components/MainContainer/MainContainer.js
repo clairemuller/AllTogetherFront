@@ -6,14 +6,20 @@ import NavBar from '../NavBar/NavBar';
 
 class MainContainer extends React.Component {
   render() {
+    const { username, userId, items, locations, rooms, categories } = this.props;
+
     return (
       <div id='mainContainer'>
         <NavBar
           logoutHandler={this.props.logoutHandler}
-          name={this.props.state.user} />
+          name={username} />
         <SearchBar />
         <ItemsList
-          items={this.props.state.items} />
+          items={items}
+          locations={locations}
+          rooms={rooms}
+          categories={categories}
+          userId={userId} />
       </div>
     )
   }

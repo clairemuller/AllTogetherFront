@@ -10,8 +10,8 @@
   width: 100%;
 }
 
-tr {
-
+th:hover {
+  cursor: pointer;
 }
 
 #tableHeader {
