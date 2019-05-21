@@ -1,21 +1,32 @@
 import React from 'react';
-import './ItemModal.css';
+import './EditItemModal.css';
 const URL = 'http://localhost:3000/users/'
 
-class ItemModal extends React.Component {
+class EditItemModal extends React.Component {
   constructor(props) {
     super(props)
 
-    const { id, description, location, category, note } = this.props.item
-
     this.state = {
-      id: id,
-      description: description,
-      location: location.name,
-      room: location.room.name,
-      category: category.name,
-      note: note
+      description: '',
+      location: '',
+      room: '',
+      category: '',
+      note: '',
+      id: 0
     }
+  }
+
+  componentDidMount() {
+    const { description, location, room, category, note, id } = this.props.item;
+
+    this.setState({
+      description: description,
+      location: location,
+      room: room,
+      category: category,
+      note: note,
+      id: id
+    })
   }
 
   handleSubmit = (event) => {
@@ -31,12 +42,16 @@ class ItemModal extends React.Component {
   }
 
   handleChange = (event) => {
+    const { name, value } = event.target;
+
     this.setState({
-      [event.target.name]: event.target.value
+      [name]: value
     })
   }
 
   render() {
+    const { description, location, room, note, category } = this.state
+
     if(!this.props.show) {
       return null;
     }
@@ -53,36 +68,38 @@ class ItemModal extends React.Component {
             <label>
               Description:
               <input name="description"
-                value={this.state.description}
+                value={description}
                 onChange={this.handleChange} />
             </label>
 
             <label>
-              Location:
-              <input
-                list="location"
+              Locations in {room}:
+              <select
                 name="location"
-                value={this.state.location}
-                onChange={this.handleChange} />
-                <datalist id="location">
-                  {this.props.locations.map(location => {
-                    return <option value={location.name} />
+                onChange={this.handleChange} >
+                  {this.props.locations.map((loc, idx) => {
+                    return (
+                      loc.name === location ?
+                      <option value={location} key={idx} selected>{location}</option> :
+                      <option value={loc.name} key={idx} >{loc.name}</option>
+                    )
                   })}
-                </datalist>
+              </select>
             </label>
 
             <label>
               Room:
-              <input
-                list="room"
+              <select
                 name="room"
-                value={this.state.room}
-                onChange={this.handleChange} />
-                <datalist id="room">
-                  {this.props.rooms.map(room => {
-                    return <option value={room.name} />
+                onChange={this.handleChange} >
+                  {this.props.rooms.map((rr, idx) => {
+                    return (
+                      rr.name === room ?
+                      <option value={room} key={idx} selected>{room}</option> :
+                      <option value={rr.name} key={idx} >{rr.name}</option>
+                    )
                   })}
-                </datalist>
+              </select>
             </label>
 
             <label>
@@ -90,19 +107,20 @@ class ItemModal extends React.Component {
               <input
                 list="category"
                 name="category"
-                value={this.state.category}
+                value={category}
                 onChange={this.handleChange} />
                 <datalist id="category">
-                  {this.props.categories.map(category => {
-                    return <option value={category.name} />
+                  {this.props.categories.map((cc, idx) => {
+                    return <option value={cc.name} key={idx} />
                   })}
                 </datalist>
+
             </label>
 
             <label>
               Note:
               <input name="note"
-                value={this.state.note}
+                value={note}
                 onChange={this.handleChange} />
             </label>
 
@@ -116,4 +134,4 @@ class ItemModal extends React.Component {
   }
 }
 
-export default ItemModal;
+export default EditItemModal;

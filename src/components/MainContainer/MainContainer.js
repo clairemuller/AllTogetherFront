@@ -12,14 +12,16 @@ class MainContainer extends React.Component {
       <div id='mainContainer'>
         <NavBar
           logoutHandler={this.props.logoutHandler}
-          name={username} />
+          name={username}
+        />
         <SearchBar />
         <ItemsList
           items={items}
           locations={locations}
           rooms={rooms}
           categories={categories}
-          userId={userId} />
+          userId={userId}
+        />
       </div>
     )
   }

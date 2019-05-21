@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 import MainContainer from './MainContainer/MainContainer'
 import LoginPage from './LoginPage'
-// import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 const URL = 'http://localhost:3000/';
 
@@ -31,8 +30,12 @@ class App extends React.Component {
   logoutHandler = () => {
     this.setState({
       username: null,
+      userId: 0,
       loggedIn: false,
-      items: []
+      items: [],
+      locations: [],
+      rooms: [],
+      categories: []
     })
   }
 
@@ -80,9 +83,11 @@ class App extends React.Component {
             locations={locations}
             rooms={rooms}
             categories={categories}
-            logoutHandler={this.logoutHandler} />
+            logoutHandler={this.logoutHandler}
+          />
           :
-          <LoginPage loginHandler={this.loginHandler} />}
+          <LoginPage loginHandler={this.loginHandler} />
+        }
       </div>
     )
   }
