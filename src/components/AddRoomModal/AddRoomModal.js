@@ -47,8 +47,8 @@ class AddRoomModal extends React.Component {
 
           <h2>Add Room</h2>
           <ul>
-            {this.props.rooms.map(ll => {
-              return <li>{ll.name}</li>
+            {this.props.rooms.map((room, idx) => {
+              return <li key={idx}>{room.name}</li>
             })}
           </ul>
 

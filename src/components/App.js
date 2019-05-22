@@ -13,7 +13,7 @@ class App extends React.Component {
       userId: 0,
       loggedIn: false,
       items: [],
-      locations: [],
+      // locations: [],
       rooms: [],
       categories: []
     }
@@ -64,7 +64,7 @@ class App extends React.Component {
     .then(res => res.json())
     .then(everything => {
       this.setState({
-        locations: everything.locations,
+        // locations: everything.locations,
         rooms: everything.rooms,
         categories: everything.categories
       })
@@ -72,7 +72,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { username, userId, items, locations, rooms, categories } = this.state;
+    const { username, userId, items, rooms, categories } = this.state;
     return (
       <div>
         {this.state.loggedIn ?
@@ -80,7 +80,6 @@ class App extends React.Component {
             username={username}
             userId={userId}
             items={items}
-            locations={locations}
             rooms={rooms}
             categories={categories}
             logoutHandler={this.logoutHandler}
