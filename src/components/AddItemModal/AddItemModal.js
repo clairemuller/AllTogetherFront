@@ -25,6 +25,7 @@ class AddItemModal extends React.Component {
       },
       body: JSON.stringify(this.state)
     })
+    .then(this.props.onClose())
   }
 
   handleChange = (event) => {
@@ -39,6 +40,11 @@ class AddItemModal extends React.Component {
     if(!this.props.show) {
       return null;
     }
+
+    // allows conditional render of rooms locations
+    let chosenRoom = this.props.rooms.find(room => {
+      return room.name === this.state.room
+    })
 
     return (
       <div id="myModal" className="modal">
@@ -81,6 +87,7 @@ class AddItemModal extends React.Component {
               <select
                 name="room"
                 onChange={this.handleChange} >
+                  <option value="" selected disabled hidden>Choose a room</option>
                   {this.props.rooms.map((rr, idx) => {
                     return (
                       <option value={rr.name} key={idx} >{rr.name}</option>
@@ -89,12 +96,23 @@ class AddItemModal extends React.Component {
               </select>
             </label>
 
-            <label>
-              Location:
-              <input name="location"
-                onChange={this.handleChange} />
-            </label>
+            {this.state.room.length === 0 ? null :
 
+            <label>
+              Location in {this.state.room}:
+              <select
+                name="location"
+                onChange={this.handleChange} >
+                  <option value="" selected disabled hidden>Choose a room</option>
+                  {chosenRoom.locations.map((ll, idx) => {
+                    return (
+                      <option value={ll.name} key={idx} >{ll.name}</option>
+                    )
+                  })}
+
+              </select>
+            </label>
+          }
             <input
               type="submit"
               value="Submit" />

@@ -14,7 +14,8 @@ class MainContainer extends React.Component {
           logoutHandler={this.props.logoutHandler}
           name={username}
         />
-        <SearchBar />
+        {// <SearchBar />
+        }
         <ItemsList
           items={items}
           rooms={rooms}

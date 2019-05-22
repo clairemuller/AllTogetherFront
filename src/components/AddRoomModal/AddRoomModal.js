@@ -13,6 +13,12 @@ class AddRoomModal extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
+
+    // if user hits submit with a blank form; doesn't really work
+    if (this.state.room.length === 0) {
+      this.props.onClose()
+    }
+
     fetch(URL + `${this.props.userId}/rooms`, {
       method: 'POST',
       headers: {
@@ -59,6 +65,16 @@ class AddRoomModal extends React.Component {
               <input name="room"
                 onChange={this.handleChange} />
             </label>
+
+            {this.state.room.length === 0 ? null :
+
+            <label>
+              Add locations:
+              <input name="locations"
+                onChange={this.handleChange} />
+            </label>
+          }
+
 
             <input
               type="submit"
