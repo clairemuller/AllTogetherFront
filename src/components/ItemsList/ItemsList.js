@@ -26,19 +26,15 @@ class ItemsList extends React.Component {
   }
 
   toggleAddModal = () => {
-    console.log();
     this.setState({
       addModalIsOpen: !this.state.addModalIsOpen
     })
   }
 
   toggleRoomModal = (room) => {
-    console.log('room modal is open: ', this.state.roomModalIsOpen);
     // adds new room to room list view
-    if (room) {
-      if (!this.props.rooms.includes(room) && room.id) {
-        this.props.rooms.push(room)
-      }
+    if (!this.props.rooms.includes(room) && room.id) {
+      this.props.rooms.push(room)
     }
     this.setState({
       roomModalIsOpen: !this.state.roomModalIsOpen

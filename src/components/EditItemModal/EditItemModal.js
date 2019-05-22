@@ -12,11 +12,12 @@ class EditItemModal extends React.Component {
       room: '',
       category: '',
       note: '',
-      id: 0
+      id: ''
     }
   }
 
   componentDidMount() {
+    console.log('inside mount');
     const { description, location, room, category, note, id } = this.props.item;
 
     this.setState({
@@ -31,7 +32,7 @@ class EditItemModal extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    fetch(URL + this.props.userId, {
+    fetch(URL + `${this.props.userId}/items`, {
       method: 'PATCH',
       headers: {
         "Content-Type": "application/json",
@@ -39,6 +40,7 @@ class EditItemModal extends React.Component {
       },
       body: JSON.stringify(this.state)
     })
+    .then(this.props.onClose())
   }
 
   handleChange = (event) => {
@@ -50,11 +52,15 @@ class EditItemModal extends React.Component {
   }
 
   render() {
-    const { description, location, room, note, category } = this.state
-
     if(!this.props.show) {
       return null;
     }
+
+    const { description, location, room, note, category } = this.state
+
+    let chosenRoom = this.props.rooms.find(room => {
+      return room.name === this.state.room
+    })
 
     return (
       <div id="myModal" className="modal">
@@ -67,39 +73,18 @@ class EditItemModal extends React.Component {
 
             <label>
               Description:
-              <input name="description"
+              <input
+                name="description"
                 value={description}
                 onChange={this.handleChange} />
             </label>
 
             <label>
-              Locations in {room}:
-              <select
-                name="location"
-                onChange={this.handleChange} >
-                  {this.props.locations.map((loc, idx) => {
-                    return (
-                      loc.name === location ?
-                      <option value={location} key={idx} selected>{location}</option> :
-                      <option value={loc.name} key={idx} >{loc.name}</option>
-                    )
-                  })}
-              </select>
-            </label>
-
-            <label>
-              Room:
-              <select
-                name="room"
-                onChange={this.handleChange} >
-                  {this.props.rooms.map((rr, idx) => {
-                    return (
-                      rr.name === room ?
-                      <option value={room} key={idx} selected>{room}</option> :
-                      <option value={rr.name} key={idx} >{rr.name}</option>
-                    )
-                  })}
-              </select>
+              Note:
+              <input
+                name="note"
+                value={note}
+                onChange={this.handleChange} />
             </label>
 
             <label>
@@ -117,17 +102,41 @@ class EditItemModal extends React.Component {
             </label>
 
             <label>
-              Note:
-              <input name="note"
-                value={note}
-                onChange={this.handleChange} />
+              Room:
+              <select
+                name="room"
+                onChange={this.handleChange} >
+                  <option value={room} selected>{room}</option>
+                  {this.props.rooms.map((rr, idx) => {
+                    return (
+                      rr.name === room ? null :
+                      <option value={rr.name} key={idx} >{rr.name}</option>
+                    )
+                  })}
+              </select>
             </label>
 
+            {this.state.room.length === 0 ? null :
+
+            <label>
+              Location in {this.state.room}:
+              <select
+                name="location"
+                onChange={this.handleChange} >
+                  {chosenRoom.locations.map((ll, idx) => {
+                    return (
+                      ll.name === location ?
+                      <option value={location} key={idx} selected>{location}</option> :
+                      <option value={ll.name} key={idx} >{ll.name}</option>                    )
+                  })}
+
+              </select>
+            </label>
+          }
             <input
               type="submit"
               value="Submit" />
           </form>
-          
         </div>
       </div>
     )
