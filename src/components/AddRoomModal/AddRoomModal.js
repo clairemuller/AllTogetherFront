@@ -21,7 +21,10 @@ class AddRoomModal extends React.Component {
       },
       body: JSON.stringify(this.state)
     })
-    this.props.onClose()
+    .then(res => res.json())
+    .then(data => {
+      this.props.onClose(data)
+    })
   }
 
   handleChange = (event) => {

@@ -114,7 +114,6 @@ class EditItemModal extends React.Component {
                     return <option value={cc.name} key={idx} />
                   })}
                 </datalist>
-
             </label>
 
             <label>
@@ -128,6 +127,7 @@ class EditItemModal extends React.Component {
               type="submit"
               value="Submit" />
           </form>
+          
         </div>
       </div>
     )

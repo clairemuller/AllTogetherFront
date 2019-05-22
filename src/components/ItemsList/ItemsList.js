@@ -30,7 +30,11 @@ class ItemsList extends React.Component {
     })
   }
 
-  toggleRoomModal = () => {
+  toggleRoomModal = (room) => {
+    // adds new room to room list view
+    if (!this.props.rooms.includes(room) && room.id) {
+      this.props.rooms.push(room)
+    }
     this.setState({
       roomModalIsOpen: !this.state.roomModalIsOpen
     })
@@ -81,10 +85,11 @@ class ItemsList extends React.Component {
 
     return (
       <>
-        <button type="button" onClick={this.toggleAddModal}>Add Item</button>
-        <button type="button" onClick={this.toggleRoomModal}>Add Room</button>
 
         <div id='itemsListContainer'>
+          <button type="button" onClick={this.toggleAddModal}>Add Item</button>
+          <button type="button" onClick={this.toggleRoomModal}>Add Room</button>
+          
           <table id='itemsListTable'>
             <tbody>
               <tr id='tableHeader'>

@@ -51,26 +51,42 @@ class AddItemModal extends React.Component {
 
             <label>
               Description:
-              <input name="description"
+              <input
+                name="description"
                 onChange={this.handleChange} />
             </label>
 
             <label>
               Note:
-              <input name="note"
+              <input
+                name="note"
                 onChange={this.handleChange} />
             </label>
 
             <label>
               Category:
-              <input name="category"
+              <input
+                list="category"
+                name="category"
                 onChange={this.handleChange} />
+                <datalist id="category">
+                  {this.props.categories.map((cc, idx) => {
+                    return <option value={cc.name} key={idx} />
+                  })}
+                </datalist>
             </label>
 
             <label>
               Room:
-              <input name="room"
-                onChange={this.handleChange} />
+              <select
+                name="room"
+                onChange={this.handleChange} >
+                  {this.props.rooms.map((rr, idx) => {
+                    return (
+                      <option value={rr.name} key={idx} >{rr.name}</option>
+                    )
+                  })}
+              </select>
             </label>
 
             <label>
