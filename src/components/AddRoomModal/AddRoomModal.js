@@ -28,8 +28,8 @@ class AddRoomModal extends React.Component {
       body: JSON.stringify(this.state)
     })
     .then(res => res.json())
-    .then(data => {
-      this.props.onClose(data)
+    .then(newRoomData => {
+      this.props.onClose(newRoomData)
     })
   }
 
@@ -52,6 +52,7 @@ class AddRoomModal extends React.Component {
           <span className="close" onClick={this.props.onClose}>&times;</span>
 
           <h2>Add Room</h2>
+          current rooms:
           <ul>
             {this.props.rooms.map((room, idx) => {
               return <li key={idx}>{room.name}</li>
@@ -61,7 +62,7 @@ class AddRoomModal extends React.Component {
           <form onSubmit={this.handleSubmit}>
 
             <label>
-              Room Name:
+              New Room Name:
               <input name="room"
                 onChange={this.handleChange} />
             </label>

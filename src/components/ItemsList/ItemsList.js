@@ -25,7 +25,11 @@ class ItemsList extends React.Component {
     })
   }
 
-  toggleAddModal = () => {
+  toggleAddModal = (item) => {
+    if (!this.props.items.includes(item) && item.id) {
+      this.props.items.push(item)
+    }
+
     this.setState({
       addModalIsOpen: !this.state.addModalIsOpen
     })

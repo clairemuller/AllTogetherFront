@@ -17,7 +17,6 @@ class EditItemModal extends React.Component {
   }
 
   componentDidMount() {
-    console.log('inside mount');
     const { description, location, room, category, note, id } = this.props.item;
 
     this.setState({
@@ -40,7 +39,10 @@ class EditItemModal extends React.Component {
       },
       body: JSON.stringify(this.state)
     })
-    .then(this.props.onClose())
+    .then(res => res.json())
+    .then(editItemData => {
+      this.props.onClose(editItemData)
+    })
   }
 
   handleChange = (event) => {

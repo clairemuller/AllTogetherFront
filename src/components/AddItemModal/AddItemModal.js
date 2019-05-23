@@ -17,6 +17,7 @@ class AddItemModal extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
+
     fetch(URL + `${this.props.userId}/items`, {
       method: 'POST',
       headers: {
@@ -25,7 +26,10 @@ class AddItemModal extends React.Component {
       },
       body: JSON.stringify(this.state)
     })
-    .then(this.props.onClose())
+    .then(res => res.json())
+    .then(newItemData => {
+      this.props.onClose(newItemData)
+    })
   }
 
   handleChange = (event) => {
@@ -37,6 +41,7 @@ class AddItemModal extends React.Component {
   }
 
   render() {
+    console.log('state: ', this.state);
     if(!this.props.show) {
       return null;
     }
@@ -45,6 +50,7 @@ class AddItemModal extends React.Component {
     let chosenRoom = this.props.rooms.find(room => {
       return room.name === this.state.room
     })
+    console.log('chosen room: ', chosenRoom);
 
     return (
       <div id="myModal" className="modal">
