@@ -41,7 +41,6 @@ class AddItemModal extends React.Component {
   }
 
   render() {
-    console.log('state: ', this.state);
     if(!this.props.show) {
       return null;
     }
@@ -50,7 +49,6 @@ class AddItemModal extends React.Component {
     let chosenRoom = this.props.rooms.find(room => {
       return room.name === this.state.room
     })
-    console.log('chosen room: ', chosenRoom);
 
     return (
       <div id="myModal" className="modal">

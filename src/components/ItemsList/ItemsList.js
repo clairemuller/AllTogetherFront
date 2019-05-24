@@ -1,10 +1,10 @@
 import React from 'react';
 import './ItemsList.css';
 import Item from '../Item/Item';
-import Room from '../Room/Room';
 import EditItemModal from '../EditItemModal/EditItemModal';
 import AddItemModal from '../AddItemModal/AddItemModal';
 import AddRoomModal from '../AddRoomModal/AddRoomModal';
+const URL = 'http://localhost:3000/users/'
 
 class ItemsList extends React.Component {
   constructor(props) {
@@ -19,9 +19,25 @@ class ItemsList extends React.Component {
   }
 
   toggleEditModal = (item) => {
+    console.log('open edit modal', item);
     this.setState({
       editModalIsOpen: !this.state.editModalIsOpen,
       clickedItem: item
+    })
+  }
+
+  toggleCloseEditModal = (editedItem) => {
+    this.props.items.map(item => {
+      if (item.id === editedItem.id) {
+        let i = this.props.items.indexOf(item)
+        this.props.items[i] = editedItem
+      }
+      return item
+    })
+
+    this.setState({
+      editModalIsOpen: !this.state.editModalIsOpen,
+      clickedItem: ''
     })
   }
 
@@ -38,7 +54,11 @@ class ItemsList extends React.Component {
   toggleRoomModal = (room) => {
     // adds new room to room list view
     if (!this.props.rooms.includes(room) && room.id) {
-      this.props.rooms.push(room)
+      fetch(URL + `${this.props.userId}/rooms`)
+      .then(res => res.json())
+      .then(rooms => {
+        this.props.rooms.push(rooms[rooms.length-1])
+      })
     }
     this.setState({
       roomModalIsOpen: !this.state.roomModalIsOpen
@@ -92,20 +112,8 @@ class ItemsList extends React.Component {
       <>
         <div id='itemsListContainer'>
 
-          <div id='top'>
-            <button type="button" onClick={this.toggleAddModal}>Add Item</button>
-            <button type="button" onClick={this.toggleRoomModal}>Add Room</button>
-
-            {// {rooms.map(room => {
-            //   return (
-            //     <Room
-            //       key={room.id}
-            //       room={room}
-            //     />
-            //   )
-            // })}
-          }
-          </div>
+          <button type="button" onClick={this.toggleAddModal}>Add Item</button>
+          <button type="button" onClick={this.toggleRoomModal}>Add Room</button>
 
           <table id='itemsListTable'>
             <tbody>
@@ -137,7 +145,7 @@ class ItemsList extends React.Component {
         {this.state.editModalIsOpen ?
           <EditItemModal
             show={this.state.editModalIsOpen}
-            onClose={this.toggleEditModal}
+            onClose={this.toggleCloseEditModal}
             item={this.state.clickedItem}
             userId={userId}
             rooms={rooms}
