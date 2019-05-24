@@ -33,7 +33,7 @@ class App extends React.Component {
       userId: 0,
       loggedIn: false,
       items: [],
-      locations: [],
+      // locations: [],
       rooms: [],
       categories: []
     })

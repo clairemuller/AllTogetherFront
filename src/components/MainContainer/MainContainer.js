@@ -1,8 +1,9 @@
 import React from 'react';
 import './MainContainer.css';
-import SearchBar from '../SearchBar/SearchBar';
+// import SearchBar from '../SearchBar/SearchBar';
 import ItemsList from '../ItemsList/ItemsList';
 import NavBar from '../NavBar/NavBar';
+// import ButtonBar from '../ButtonBar/ButtonBar';
 
 class MainContainer extends React.Component {
   render() {
@@ -15,6 +16,8 @@ class MainContainer extends React.Component {
           name={username}
         />
         {// <SearchBar />
+        }
+        {// <ButtonBar />
         }
         <ItemsList
           items={items}

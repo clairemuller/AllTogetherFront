@@ -50,7 +50,17 @@ class EditItemModal extends React.Component {
 
     this.setState({
       [name]: value
+    }, () => {
+      if (name === 'room') {
+        const newRoom = this.props.rooms.find(room => {
+          return room.name === value
+        })
+        this.setState({
+          location: newRoom.locations[0].name
+        })
+      }
     })
+
   }
 
   render() {
