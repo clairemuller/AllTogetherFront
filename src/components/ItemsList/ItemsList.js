@@ -19,21 +19,34 @@ class ItemsList extends React.Component {
   }
 
   toggleEditModal = (item) => {
-    console.log('open edit modal', item);
     this.setState({
       editModalIsOpen: !this.state.editModalIsOpen,
       clickedItem: item
     })
   }
 
-  toggleCloseEditModal = (editedItem) => {
-    this.props.items.map(item => {
-      if (item.id === editedItem.id) {
-        let i = this.props.items.indexOf(item)
-        this.props.items[i] = editedItem
-      }
-      return item
-    })
+  toggleCloseEditModal = (editedItem, method) => {
+    if (method === 'delete') {
+      console.log('deleting item...');
+      this.props.items.map(item => {
+        if (item.id === editedItem.id) {
+          let i = this.props.items.indexOf(item)
+          this.props.items.splice(i, 1)
+        }
+        return ''
+      })
+    } else {
+      console.log('editing item...');
+      this.props.items.map(item => {
+        if (item.id === editedItem.id) {
+          let i = this.props.items.indexOf(item)
+          this.props.items[i] = editedItem
+        }
+        return item
+      })
+    }
+
+
 
     this.setState({
       editModalIsOpen: !this.state.editModalIsOpen,

@@ -41,8 +41,25 @@ class EditItemModal extends React.Component {
     })
     .then(res => res.json())
     .then(editItemData => {
-      this.props.onClose(editItemData)
+      this.props.onClose(editItemData, 'edit')
     })
+  }
+
+  handleDelete = (event) => {
+    event.preventDefault()
+    fetch(URL + `${this.props.userId}/items`, {
+      method: 'DELETE',
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(this.state)
+    })
+    .then(this.props.onClose(this.state, 'delete'))
+    // .then(res => res.json())
+    // .then(data => {
+    //   this.props.onClose(data)
+    // })
   }
 
   handleChange = (event) => {
@@ -148,6 +165,10 @@ class EditItemModal extends React.Component {
             <input
               type="submit"
               value="Submit" />
+
+            <button onClick={this.handleDelete}>
+            Delete Item
+            </button>
           </form>
         </div>
       </div>
