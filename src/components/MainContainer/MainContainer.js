@@ -6,6 +6,11 @@ import NavBar from '../NavBar/NavBar';
 // import ButtonBar from '../ButtonBar/ButtonBar';
 
 class MainContainer extends React.Component {
+
+  handleStateUpdate = (object, partOfState, method) => {
+    this.props.onStateUpdate(object, partOfState, method)
+  }
+
   render() {
     const { username, userId, items, rooms, categories } = this.props;
 
@@ -24,6 +29,7 @@ class MainContainer extends React.Component {
           rooms={rooms}
           categories={categories}
           userId={userId}
+          onStateUpdate={this.handleStateUpdate}
         />
       </div>
     )

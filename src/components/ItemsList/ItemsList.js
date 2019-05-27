@@ -1,9 +1,10 @@
 import React from 'react';
 import './ItemsList.css';
 import Item from '../Item/Item';
-import EditItemModal from '../EditItemModal/EditItemModal';
 import AddItemModal from '../AddItemModal/AddItemModal';
+import EditItemModal from '../EditItemModal/EditItemModal';
 import AddRoomModal from '../AddRoomModal/AddRoomModal';
+import EditRoomsModal from '../EditRoomsModal/EditRoomsModal';
 const URL = 'http://localhost:3000/users/'
 
 class ItemsList extends React.Component {
@@ -11,23 +12,24 @@ class ItemsList extends React.Component {
     super(props)
 
     this.state = {
-      editModalIsOpen: false,
-      addModalIsOpen: false,
-      roomModalIsOpen: false,
+      editItemModalIsOpen: false,
+      addItemModalIsOpen: false,
+      editRoomsModalIsOpen: false,
+      addRoomModalIsOpen: false,
       clickedItem: ''
     }
   }
 
-  toggleEditModal = (item) => {
+  openEditItemModal = (item) => {
     this.setState({
-      editModalIsOpen: !this.state.editModalIsOpen,
+      editItemModalIsOpen: !this.state.editItemModalIsOpen,
       clickedItem: item
     })
   }
 
-  toggleCloseEditModal = (editedItem, method) => {
+  closeEditItemModal = (editedItem, method) => {
+    this.props.onStateUpdate()
     if (method === 'delete') {
-      console.log('deleting item...');
       this.props.items.map(item => {
         if (item.id === editedItem.id) {
           let i = this.props.items.indexOf(item)
@@ -35,8 +37,7 @@ class ItemsList extends React.Component {
         }
         return ''
       })
-    } else {
-      console.log('editing item...');
+    } else if (method === 'edit') {
       this.props.items.map(item => {
         if (item.id === editedItem.id) {
           let i = this.props.items.indexOf(item)
@@ -45,36 +46,59 @@ class ItemsList extends React.Component {
         return item
       })
     }
-
-
-
     this.setState({
-      editModalIsOpen: !this.state.editModalIsOpen,
+      editItemModalIsOpen: !this.state.editItemModalIsOpen,
       clickedItem: ''
     })
   }
 
-  toggleAddModal = (item) => {
-    if (!this.props.items.includes(item) && item.id) {
-      this.props.items.push(item)
+  toggleAddItemModal = (item) => {
+    // if new item was created, update state in parent
+    if (item.id) {
+      this.props.onStateUpdate(item, 'items', 'add')
     }
-
     this.setState({
-      addModalIsOpen: !this.state.addModalIsOpen
+      addItemModalIsOpen: !this.state.addItemModalIsOpen
     })
   }
 
-  toggleRoomModal = (room) => {
-    // adds new room to room list view
-    if (!this.props.rooms.includes(room) && room.id) {
-      fetch(URL + `${this.props.userId}/rooms`)
-      .then(res => res.json())
-      .then(rooms => {
-        this.props.rooms.push(rooms[rooms.length-1])
+  toggleAddRoomModal = (room) => {
+    // if new room was created, update state in parent
+    if (room.id) {
+      this.props.onStateUpdate(room, 'rooms', 'add')
+    }
+    this.setState({
+      addRoomModalIsOpen: !this.state.addRoomModalIsOpen
+    })
+  }
+
+  openEditRoomsModal = () => {
+    this.setState({
+      editRoomsModalIsOpen: !this.state.editRoomsModalIsOpen
+    })
+  }
+
+  closeEditRoomsModal = (editedRoom, method) => {
+    if (method === 'delete') {
+      let room = this.props.rooms.find(room => {
+        return room.id === editedRoom.id
+          let i = this.props.rooms.indexOf(room)
+          this.props.rooms.splice(i, 1)
+      })
+      let newItemsProps = this.props.items.filter(item => {
+        return item.location.room.id === room.id
+      })
+    } else if (method === 'edit') {
+      this.props.rooms.map(room => {
+        if (room.id === editedRoom.id) {
+          let i = this.props.rooms.indexOf(room)
+          this.props.rooms[i] = editedRoom
+        }
+        return room
       })
     }
     this.setState({
-      roomModalIsOpen: !this.state.roomModalIsOpen
+      editRoomsModalIsOpen: !this.state.editRoomsModalIsOpen
     })
   }
 
@@ -125,8 +149,15 @@ class ItemsList extends React.Component {
       <>
         <div id='itemsListContainer'>
 
-          <button type="button" onClick={this.toggleAddModal}>Add Item</button>
-          <button type="button" onClick={this.toggleRoomModal}>Add Room</button>
+        {this.props.rooms.length === 0 ?
+          <button type="button" onClick={this.toggleAddRoomModal}>Add Room</button>
+          :
+          <>
+            <button type="button" onClick={this.toggleAddItemModal}>Add Item</button>
+            <button type="button" onClick={this.toggleAddRoomModal}>Add Room</button>
+            <button type="button" onClick={this.openEditRoomsModal}>Edit Rooms</button>
+          </>
+        }
 
           <table id='itemsListTable'>
             <tbody>
@@ -148,17 +179,29 @@ class ItemsList extends React.Component {
                     room={item.location.room.name}
                     location={item.location.name}
                     userId={userId}
-                    onClick={this.toggleEditModal}
+                    onClick={this.openEditItemModal}
                   />
                 )})}
             </tbody>
           </table>
         </div>
 
-        {this.state.editModalIsOpen ?
+
+        {this.state.addItemModalIsOpen ?
+          <AddItemModal
+            show={this.state.addItemModalIsOpen}
+            onClose={this.toggleAddItemModal}
+            userId={userId}
+            rooms={rooms}
+            categories={categories}
+            />
+          :
+          null}
+
+        {this.state.editItemModalIsOpen ?
           <EditItemModal
-            show={this.state.editModalIsOpen}
-            onClose={this.toggleCloseEditModal}
+            show={this.state.editItemModalIsOpen}
+            onClose={this.closeEditItemModal}
             item={this.state.clickedItem}
             userId={userId}
             rooms={rooms}
@@ -168,26 +211,25 @@ class ItemsList extends React.Component {
           :
           null}
 
-          {this.state.addModalIsOpen ?
-            <AddItemModal
-              show={this.state.addModalIsOpen}
-              onClose={this.toggleAddModal}
-              userId={userId}
-              rooms={rooms}
-              categories={categories}
-              />
-            :
-            null}
+        {this.state.addRoomModalIsOpen ?
+          <AddRoomModal
+            show={this.state.addRoomModalIsOpen}
+            onClose={this.toggleAddRoomModal}
+            userId={userId}
+            rooms={rooms}
+            />
+          :
+          null}
 
-          {this.state.roomModalIsOpen ?
-            <AddRoomModal
-              show={this.state.roomModalIsOpen}
-              onClose={this.toggleRoomModal}
-              userId={userId}
-              rooms={rooms}
-              />
-            :
-            null}
+        {this.state.editRoomsModalIsOpen ?
+          <EditRoomsModal
+            show={this.state.editRoomsModalIsOpen}
+            onClose={this.closeEditRoomsModal}
+            userId={userId}
+            rooms={rooms}
+            />
+          :
+          null}
       </>
     )
   }

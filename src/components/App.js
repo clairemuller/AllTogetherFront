@@ -13,7 +13,6 @@ class App extends React.Component {
       userId: 0,
       loggedIn: false,
       items: [],
-      // locations: [],
       rooms: [],
       categories: []
     }
@@ -51,8 +50,19 @@ class App extends React.Component {
     .then(res => res.json())
     .then(userData => {
       this.setState({
-        userId: userData.id,
-        items: userData.items
+        userId: userData.id
+      }, () => {
+        this.getItems()
+      })
+    })
+  }
+
+  getItems() {
+    fetch(URL + `users/${this.state.userId}/items`)
+    .then(res => res.json())
+    .then(data => {
+      this.setState({
+        items: data
       }, () => {
         this.getEverything()
       })
@@ -64,11 +74,28 @@ class App extends React.Component {
     .then(res => res.json())
     .then(everything => {
       this.setState({
-        // locations: everything.locations,
         rooms: everything.rooms,
         categories: everything.categories
       })
     })
+  }
+
+  handleStateUpdate = (object, partOfState, method) => {
+    if (method === 'add') {
+      this.getItems()
+      // if (partOfState === 'items') {
+      //   // if user added new item, have to update everything
+      //   let newItems = [...this.state.items, object]
+      //   this.setState({
+      //     items: newItems
+      //   }, () => this.getEverything())
+      // } else if (partOfState === 'rooms') {
+      //   this.getEverything()
+      // }
+    } else if (method === 'delete') {
+      console.log('inside state delete');
+    }
+
   }
 
   render() {
@@ -83,6 +110,7 @@ class App extends React.Component {
             rooms={rooms}
             categories={categories}
             logoutHandler={this.logoutHandler}
+            onStateUpdate={this.handleStateUpdate}
           />
           :
           <LoginPage loginHandler={this.loginHandler} />

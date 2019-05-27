@@ -56,18 +56,14 @@ class EditItemModal extends React.Component {
       body: JSON.stringify(this.state)
     })
     .then(this.props.onClose(this.state, 'delete'))
-    // .then(res => res.json())
-    // .then(data => {
-    //   this.props.onClose(data)
-    // })
   }
 
   handleChange = (event) => {
     const { name, value } = event.target;
-
     this.setState({
       [name]: value
     }, () => {
+      // if change room, change location state
       if (name === 'room') {
         const newRoom = this.props.rooms.find(room => {
           return room.name === value
@@ -77,7 +73,6 @@ class EditItemModal extends React.Component {
         })
       }
     })
-
   }
 
   render() {
@@ -146,7 +141,6 @@ class EditItemModal extends React.Component {
             </label>
 
             {this.state.room.length === 0 ? null :
-
             <label>
               Location in {this.state.room}:
               <select
@@ -158,17 +152,18 @@ class EditItemModal extends React.Component {
                       <option value={location} key={idx} selected>{location}</option> :
                       <option value={ll.name} key={idx} >{ll.name}</option>                    )
                   })}
-
               </select>
             </label>
-          }
+            }
+
             <input
               type="submit"
               value="Submit" />
 
             <button onClick={this.handleDelete}>
-            Delete Item
+              Delete Item
             </button>
+
           </form>
         </div>
       </div>
