@@ -31,7 +31,6 @@ class EditRoomsModal extends React.Component {
 
   handleRoomDelete = (event) => {
     event.preventDefault()
-    // let room = event.target.nextSibling.value;
     fetch(URL + `${this.props.userId}/rooms`, {
       method: 'DELETE',
       headers: {
@@ -40,7 +39,7 @@ class EditRoomsModal extends React.Component {
       },
       body: JSON.stringify(this.state)
     })
-    .then(this.props.onClose(this.state, 'delete'))
+    .then(this.props.onClose(true))
   }
 
   // handleChange = (event) => {

@@ -80,21 +80,15 @@ class App extends React.Component {
     })
   }
 
-  handleStateUpdate = (object, partOfState, method) => {
-    if (method === 'add') {
-      this.getItems()
-      // if (partOfState === 'items') {
-      //   // if user added new item, have to update everything
-      //   let newItems = [...this.state.items, object]
-      //   this.setState({
-      //     items: newItems
-      //   }, () => this.getEverything())
-      // } else if (partOfState === 'rooms') {
-      //   this.getEverything()
-      // }
-    } else if (method === 'delete') {
-      console.log('inside state delete');
-    }
+  handleStateUpdate = () => {
+    console.log("i'm in");
+    this.getItems()
+    // if (method === 'add') {
+    // } else if (method === 'delete') {
+    //   console.log('inside state delete');
+    // } else if (method === 'edit') {
+    //   console.log('inside state edit');
+    // }
 
   }
 

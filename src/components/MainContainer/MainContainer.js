@@ -7,8 +7,8 @@ import NavBar from '../NavBar/NavBar';
 
 class MainContainer extends React.Component {
 
-  handleStateUpdate = (object, partOfState, method) => {
-    this.props.onStateUpdate(object, partOfState, method)
+  handleStateUpdate = () => {
+    this.props.onStateUpdate()
   }
 
   render() {

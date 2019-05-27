@@ -27,24 +27,9 @@ class ItemsList extends React.Component {
     })
   }
 
-  closeEditItemModal = (editedItem, method) => {
-    this.props.onStateUpdate()
-    if (method === 'delete') {
-      this.props.items.map(item => {
-        if (item.id === editedItem.id) {
-          let i = this.props.items.indexOf(item)
-          this.props.items.splice(i, 1)
-        }
-        return ''
-      })
-    } else if (method === 'edit') {
-      this.props.items.map(item => {
-        if (item.id === editedItem.id) {
-          let i = this.props.items.indexOf(item)
-          this.props.items[i] = editedItem
-        }
-        return item
-      })
+  closeEditItemModal = (needToUpdate) => {
+    if (needToUpdate === true) {
+      this.props.onStateUpdate()
     }
     this.setState({
       editItemModalIsOpen: !this.state.editItemModalIsOpen,
@@ -55,7 +40,7 @@ class ItemsList extends React.Component {
   toggleAddItemModal = (item) => {
     // if new item was created, update state in parent
     if (item.id) {
-      this.props.onStateUpdate(item, 'items', 'add')
+      this.props.onStateUpdate()
     }
     this.setState({
       addItemModalIsOpen: !this.state.addItemModalIsOpen
@@ -78,24 +63,27 @@ class ItemsList extends React.Component {
     })
   }
 
-  closeEditRoomsModal = (editedRoom, method) => {
-    if (method === 'delete') {
-      let room = this.props.rooms.find(room => {
-        return room.id === editedRoom.id
-          let i = this.props.rooms.indexOf(room)
-          this.props.rooms.splice(i, 1)
-      })
-      let newItemsProps = this.props.items.filter(item => {
-        return item.location.room.id === room.id
-      })
-    } else if (method === 'edit') {
-      this.props.rooms.map(room => {
-        if (room.id === editedRoom.id) {
-          let i = this.props.rooms.indexOf(room)
-          this.props.rooms[i] = editedRoom
-        }
-        return room
-      })
+  closeEditRoomsModal = (needToUpdate) => {
+    // if (method === 'delete') {
+    //   let room = this.props.rooms.find(room => {
+    //     return room.id === editedRoom.id
+    //       let i = this.props.rooms.indexOf(room)
+    //       this.props.rooms.splice(i, 1)
+    //   })
+    //   let newItemsProps = this.props.items.filter(item => {
+    //     return item.location.room.id === room.id
+    //   })
+    // } else if (method === 'edit') {
+    //   this.props.rooms.map(room => {
+    //     if (room.id === editedRoom.id) {
+    //       let i = this.props.rooms.indexOf(room)
+    //       this.props.rooms[i] = editedRoom
+    //     }
+    //     return room
+    //   })
+    // }
+    if (needToUpdate === true) {
+      this.props.onStateUpdate()
     }
     this.setState({
       editRoomsModalIsOpen: !this.state.editRoomsModalIsOpen

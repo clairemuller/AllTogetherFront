@@ -39,10 +39,7 @@ class EditItemModal extends React.Component {
       },
       body: JSON.stringify(this.state)
     })
-    .then(res => res.json())
-    .then(editItemData => {
-      this.props.onClose(editItemData, 'edit')
-    })
+    this.props.onClose(true)
   }
 
   handleDelete = (event) => {
@@ -55,7 +52,7 @@ class EditItemModal extends React.Component {
       },
       body: JSON.stringify(this.state)
     })
-    .then(this.props.onClose(this.state, 'delete'))
+    .then(this.props.onClose(true))
   }
 
   handleChange = (event) => {
