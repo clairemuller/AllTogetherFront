@@ -14,21 +14,22 @@ class EditRoomsModal extends React.Component {
     }
   }
 
-  // handleSubmit = (event) => {
-  //   event.preventDefault()
-  //   fetch(URL + `${this.props.userId}/items`, {
-  //     method: 'PATCH',
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       "Accept": "application/json"
-  //     },
-  //     body: JSON.stringify(this.state)
-  //   })
-  //   .then(res => res.json())
-  //   .then(editItemData => {
-  //     this.props.onClose(editItemData, 'edit')
-  //   })
-  // }
+  handleSubmit = (event) => {
+    event.preventDefault()
+    console.log();
+    fetch(URL + `${this.props.userId}/rooms`, {
+      method: 'PATCH',
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(this.state)
+    })
+    .then(res => res.json())
+    .then(data => {
+      this.props.onClose(true)
+    })
+  }
 
   handleRoomDelete = (event) => {
     event.preventDefault();
