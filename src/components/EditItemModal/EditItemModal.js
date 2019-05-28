@@ -60,14 +60,21 @@ class EditItemModal extends React.Component {
     this.setState({
       [name]: value
     }, () => {
-      // if change room, change location state
+      // if user changes room, change location state
       if (name === 'room') {
         const newRoom = this.props.rooms.find(room => {
           return room.name === value
         })
-        this.setState({
-          location: newRoom.locations[0].name
-        })
+        // check if room has locations
+        if (newRoom.locations.length !== 0) {
+          this.setState({
+            location: newRoom.locations[0].name
+          })
+        } else {
+          this.setState({
+            location: 'no locations'
+          })
+        }
       }
     })
   }
