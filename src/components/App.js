@@ -60,36 +60,27 @@ class App extends React.Component {
   getItems() {
     fetch(URL + `users/${this.state.userId}/items`)
     .then(res => res.json())
-    .then(data => {
-      this.setState({
-        items: data
-      }, () => {
-        this.getEverything()
-      })
-    })
+    .then(items => this.getEverything(items))
   }
 
-  getEverything() {
+  getEverything(items) {
     fetch(URL + `users/${this.state.userId}/everything`)
     .then(res => res.json())
     .then(everything => {
+      console.log('before setState');
+      console.log(this.state);
       this.setState({
+        items: items,
         rooms: everything.rooms,
         categories: everything.categories
       })
+      console.log('after setState');
+      console.log(this.state);
     })
   }
 
   handleStateUpdate = () => {
-    console.log("i'm in");
     this.getItems()
-    // if (method === 'add') {
-    // } else if (method === 'delete') {
-    //   console.log('inside state delete');
-    // } else if (method === 'edit') {
-    //   console.log('inside state edit');
-    // }
-
   }
 
   render() {

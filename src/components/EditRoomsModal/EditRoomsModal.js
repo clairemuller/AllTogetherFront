@@ -8,8 +8,9 @@ class EditRoomsModal extends React.Component {
 
     this.state = {
       id: 0,
+      name: '',
       locations: '',
-      name: ''
+      editName: ''
     }
   }
 
@@ -39,44 +40,34 @@ class EditRoomsModal extends React.Component {
       },
       body: JSON.stringify(this.state)
     })
-    .then(this.props.onClose(true))
+    .then(res => res.json())
+    .then(data => {
+      this.props.onClose(true)
+    })
   }
 
-  // handleChange = (event) => {
-  //   const { name, value } = event.target;
-  //
-  //   if (name !== 'name') {
-      // if changing location name, name param will be location id
-      // let loc = this.state.locations.find(ll => {
-      //   return ll.id === parseInt(name)
-      // })
-      // let i = this.state.locations.indexOf(loc)
-      // loc.name = value
-      // let newLocationsState = {...this.state.locations}
+  handleChange = (event) => {
+    const { name, value } = event.target;
 
-      // this.state.locations.map(ll => {
-      //   if (ll.id === parseInt(name)) {
-      //     let i = this.state.locations.indexOf(ll)
-      //     let newLocation = {...this.state.locations[i]}
-      //     newLocation.name = value
-      //     debugger
-      //     this.setState({
-      //       locations: {...this.state.locations, ...this.state.locations[i]}
-      //     })
-      //   }
-      // })
-      // newLocationsState[i].name = value
-      // debugger
-      // this.setState({
-      //   locations: newLocationsState
-      // })
-  //   } else {
-  //     // otherwise, changing room name, name param will be 'name'
-  //     this.setState({
-  //       name: value
-  //     })
-  //   }
-  // }
+    if (name !== 'name') {
+      // update location name
+      let locIndex = this.state.locations.findIndex(ll => {
+        return ll.id === parseInt(name)
+      })
+
+      let locationsCopy = this.state.locations
+      locationsCopy[locIndex].name = value
+
+      this.setState({
+        locations: locationsCopy
+      })
+    } else {
+      // update room name
+      this.setState({
+        editName: value
+      })
+    }
+  }
 
   handleClick = (event) => {
     let roomName = event.target.innerText;
@@ -87,8 +78,9 @@ class EditRoomsModal extends React.Component {
 
     this.setState({
       id: roomObj.id,
+      name: roomObj.name,
       locations: roomObj.locations,
-      name: roomObj.name
+      editName: roomObj.name
     })
   }
 
@@ -125,11 +117,11 @@ class EditRoomsModal extends React.Component {
                   room name:
                   <div>
                     <button onClick={this.handleRoomDelete}>
-                      X
+                    X
                     </button>
                     <input name="name"
                       onChange={this.handleChange}
-                      value={this.state.name} />
+                      value={this.state.editName} />
                   </div>
                 </label>
 
@@ -138,9 +130,9 @@ class EditRoomsModal extends React.Component {
                   {this.state.locations.map((ll, idx) => {
                     return (
                       <div key={idx}>
-                        <button onClick={this.handleDelete}>
-                          X
-                        </button>
+                      <button onClick={this.handleDelete}>
+                      X
+                      </button>
                         <input
                           value={ll.name}
                           name={ll.id}
