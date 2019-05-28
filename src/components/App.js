@@ -67,15 +67,11 @@ class App extends React.Component {
     fetch(URL + `users/${this.state.userId}/everything`)
     .then(res => res.json())
     .then(everything => {
-      console.log('before setState');
-      console.log(this.state);
       this.setState({
         items: items,
         rooms: everything.rooms,
         categories: everything.categories
       })
-      console.log('after setState');
-      console.log(this.state);
     })
   }
 

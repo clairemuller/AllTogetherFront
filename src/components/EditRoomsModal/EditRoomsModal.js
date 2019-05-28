@@ -7,7 +7,7 @@ class EditRoomsModal extends React.Component {
     super(props)
 
     this.state = {
-      id: 0,
+      roomId: 0,
       name: '',
       locations: '',
       editName: ''
@@ -31,7 +31,7 @@ class EditRoomsModal extends React.Component {
   // }
 
   handleRoomDelete = (event) => {
-    event.preventDefault()
+    event.preventDefault();
     fetch(URL + `${this.props.userId}/rooms`, {
       method: 'DELETE',
       headers: {
@@ -39,6 +39,22 @@ class EditRoomsModal extends React.Component {
         "Accept": "application/json"
       },
       body: JSON.stringify(this.state)
+    })
+    .then(res => res.json())
+    .then(data => {
+      this.props.onClose(true)
+    })
+  }
+
+  handleLocationDelete = (locationId, event) => {
+    event.preventDefault();
+    fetch(URL + `${this.props.userId}/locations`, {
+      method: 'DELETE',
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({ locationId })
     })
     .then(res => res.json())
     .then(data => {
@@ -77,7 +93,7 @@ class EditRoomsModal extends React.Component {
     })
 
     this.setState({
-      id: roomObj.id,
+      roomId: roomObj.id,
       name: roomObj.name,
       locations: roomObj.locations,
       editName: roomObj.name
@@ -130,7 +146,7 @@ class EditRoomsModal extends React.Component {
                   {this.state.locations.map((ll, idx) => {
                     return (
                       <div key={idx}>
-                      <button onClick={this.handleDelete}>
+                      <button onClick={(event) => this.handleLocationDelete(ll.id, event)}>
                       X
                       </button>
                         <input
