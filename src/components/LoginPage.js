@@ -1,19 +1,18 @@
 import React from 'react';
 import { GoogleLogin } from 'react-google-login';
-import './App.css';
+import '../css/LoginPage.css';
 const clientId = "326315008081-629ogrdt7f7fre1a5qvq29ealcsjk05s.apps.googleusercontent.com"
 
 class LoginPage extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {}
 
     this.onSignIn = this.onSignIn.bind(this)
     this.verifyToken = this.verifyToken.bind(this)
   }
 
   failure(response) {
-    console.log('failure response: ', response);
+    alert('Login failed!')
   }
 
   async onSignIn(googleUser) {
@@ -41,14 +40,19 @@ class LoginPage extends React.Component {
 
   render() {
     return (
-      <div>
-          <GoogleLogin
-            clientId={clientId}
-            buttonText="Login with Google"
-            onSuccess={this.onSignIn}
-            onFailure={this.failure}
-            cookiePolicy={'single_host_origin'}
-            />
+      <div id='login-main'>
+        <div id='login-container'>
+          <h1>AllTogether</h1>
+          <div id='google-button-container'>
+            <GoogleLogin
+              clientId={clientId}
+              buttonText="Login with Google"
+              onSuccess={this.onSignIn}
+              onFailure={this.failure}
+              cookiePolicy={'single_host_origin'}
+              />
+          </div>
+        </div>
       </div>
     )
   }

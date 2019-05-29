@@ -1,0 +1,14 @@
+#login-main {
+  height: 100%;
+}
+
+#login-container {
+  margin: auto;
+  width: 30%;
+  text-align: center;
+  border: black;
+  border-style: solid;
+  border-width: 1px;
+  padding: 20px;
+  font-family: 'Nunito Sans';
+}

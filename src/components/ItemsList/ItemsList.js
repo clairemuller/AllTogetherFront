@@ -1,5 +1,5 @@
 import React from 'react';
-import './ItemsList.css';
+import '../../css/ItemsList.css';
 import Item from '../Item/Item';
 import AddItemModal from '../AddItemModal/AddItemModal';
 import EditItemModal from '../EditItemModal/EditItemModal';
@@ -118,15 +118,29 @@ class ItemsList extends React.Component {
       <>
         <div id='itemsListContainer'>
 
-        {this.props.rooms.length === 0 ?
-          <button type="button" onClick={this.toggleAddRoomModal}>Add Room</button>
-          :
-          <>
-            <button type="button" onClick={this.toggleAddItemModal}>Add Item</button>
-            <button type="button" onClick={this.toggleAddRoomModal}>Add Room</button>
-            <button type="button" onClick={this.openEditRoomsModal}>Edit Rooms</button>
-          </>
-        }
+        <div id='button-bar'>
+          {this.props.rooms.length === 0 ?
+              <button className='button-bar-button' type="button"
+                onClick={this.toggleAddRoomModal}>
+                Add Room
+              </button>
+            :
+            <>
+              <button className='button-bar-button' type="button"
+                onClick={this.toggleAddItemModal}>
+                Add Item
+              </button>
+              <button className='button-bar-button' type="button"
+                onClick={this.toggleAddRoomModal}>
+                Add Room
+              </button>
+              <button className='button-bar-button' type="button"
+                onClick={this.openEditRoomsModal}>
+                Edit Rooms
+              </button>
+            </>
+          }
+        </div>
 
           <table id='itemsListTable'>
             <tbody>
@@ -154,7 +168,6 @@ class ItemsList extends React.Component {
             </tbody>
           </table>
         </div>
-
 
         {this.state.addItemModalIsOpen ?
           <AddItemModal

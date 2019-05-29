@@ -1,0 +1,39 @@
+#button-bar {
+  border-bottom: 1px solid black;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+button.button-bar-button {
+  height: 40px;
+  margin: 0px 10px;
+  font-size: 15px;
+  font-family: 'Nunito Sans';
+  border-radius: 6px;
+  /* padding: 7px; */
+}
+
+#itemsListContainer {
+}
+
+#itemsListTable {
+  width: 100%;
+  border-bottom: 1px solid black;
+  padding: 1%;
+  height: auto;
+}
+
+th:hover {
+  cursor: pointer;
+}
+
+#tableHeader {
+  text-align: left;
+  background-color: #f1f1f1;
+}
+
+#top {
+  padding: 10px;
+}

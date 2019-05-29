@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 import MainContainer from './MainContainer/MainContainer'
 import LoginPage from './LoginPage'
-
 const URL = 'http://localhost:3000/';
 
 class App extends React.Component {
@@ -32,7 +31,6 @@ class App extends React.Component {
       userId: 0,
       loggedIn: false,
       items: [],
-      // locations: [],
       rooms: [],
       categories: []
     })
@@ -82,7 +80,7 @@ class App extends React.Component {
   render() {
     const { username, userId, items, rooms, categories } = this.state;
     return (
-      <div>
+      <>
         {this.state.loggedIn ?
           <MainContainer
             username={username}
@@ -96,7 +94,7 @@ class App extends React.Component {
           :
           <LoginPage loginHandler={this.loginHandler} />
         }
-      </div>
+      </>
     )
   }
 }

@@ -50,7 +50,6 @@ class EditRoomsModal extends React.Component {
   }
 
   handleRoomDelete = (event) => {
-    debugger
     event.preventDefault();
     fetch(URL + `${this.props.userId}/rooms`, {
       method: 'DELETE',
