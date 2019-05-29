@@ -1,5 +1,5 @@
 import React from 'react';
-import '../App.css';
+import '../../css/Modal.css';
 
 class ConfirmationModal extends React.Component {
   render() {
@@ -8,23 +8,23 @@ class ConfirmationModal extends React.Component {
     }
 
     return (
-      <div id="myModal" className="modal">
+      <div className="modal">
         <div className="confirm-modal-content">
 
           <h2>Are you sure?</h2>
 
           {this.props.locationId ?
-            <div className='confirm' onClick={() => this.props.onYes(this.props.locationId)}>
+            <button className='confirm' onClick={() => this.props.onYes(this.props.locationId)}>
             YES
-            </div>
+            </button>
             :
-            <div className='confirm' onClick={this.props.onYes}>
+            <button className='confirm' onClick={this.props.onYes}>
             YES
-            </div>
+            </button>
           }
-          <div className='confirm' onClick={this.props.onNo}>
+          <button className='confirm' onClick={this.props.onNo}>
           NO
-          </div>
+          </button>
 
         </div>
       </div>

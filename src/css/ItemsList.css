@@ -27,6 +27,7 @@ table {
   border-bottom: 1px solid black;
   height: auto;
   border-collapse: collapse;
+  background-color: rgb(241, 241, 241, 0.5);
 }
 
 /* table headers */
@@ -34,7 +35,7 @@ th {
   font-size: 20px;
   padding: 1px 6px;
   text-align: left;
-  background-color: #f1f1f1;
+  background-color: rgb(241, 241, 241, 0.8);
   border-right: 1px solid black;
   border-left: 1px solid black;
   border-bottom: 1px solid black;

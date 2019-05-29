@@ -1,6 +1,6 @@
-#login-main {
+/* #login-main {
   height: 100%;
-}
+} */
 
 #login-container {
   margin: auto;
@@ -11,4 +11,5 @@
   border-width: 1px;
   padding: 20px;
   font-family: 'Nunito Sans';
+  background-color: rgb(241, 241, 241, 0.6);
 }

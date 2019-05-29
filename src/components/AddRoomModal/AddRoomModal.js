@@ -1,5 +1,5 @@
 import React from 'react';
-import '../App.css';
+import '../../css/Modal.css';
 const URL = 'http://localhost:3000/users/'
 
 class AddRoomModal extends React.Component {
@@ -45,29 +45,37 @@ class AddRoomModal extends React.Component {
     }
 
     return (
-      <div id="myModal" className="modal">
+      <div className="modal">
         <div className="modal-content">
           <span className="close" onClick={this.props.onClose}>&times;</span>
 
           <h2>Add Room</h2>
-          {this.props.rooms.length !== 0 ?
-            <div>
-              current rooms:
-              <ul>
-                {this.props.rooms.map((room, idx) => {
-                  return <li key={idx}>{room.name}</li>
-                })}
-              </ul>
-            </div>
-          : null
-          }
+
+            {this.props.rooms.length !== 0 ?
+              <div>
+                current rooms:
+                <div className='current-rooms-container'>
+                  {this.props.rooms.map((room, idx) => {
+                    return (
+                      <div
+                        key={idx}
+                        className='current-room' >
+                        {room.name}
+                      </div>
+                    )
+                  })}
+                </div>
+              </div>
+            : null
+            }
 
           <form onSubmit={this.handleSubmit}>
 
             <label>
               New Room Name:
               <input name="room"
-                onChange={this.handleChange} />
+                onChange={this.handleChange}
+                required />
             </label>
 
             {this.state.room.length === 0 ? null :

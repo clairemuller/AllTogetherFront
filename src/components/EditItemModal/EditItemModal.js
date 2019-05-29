@@ -1,6 +1,6 @@
 import React from 'react';
 import ConfirmationModal from '../ConfirmationModal/ConfirmationModal'
-import '../App.css';
+import '../../css/Modal.css';
 const URL = 'http://localhost:3000/users/'
 
 class EditItemModal extends React.Component {
@@ -107,7 +107,7 @@ class EditItemModal extends React.Component {
 
     return (
       <>
-      <div id="myModal" className="modal">
+      <div className="modal">
         <div className="modal-content">
           <span className="close" onClick={this.props.onClose}>&times;</span>
 

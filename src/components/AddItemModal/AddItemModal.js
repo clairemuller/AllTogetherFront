@@ -1,5 +1,5 @@
 import React from 'react';
-import '../App.css';
+import '../../css/Modal.css';
 const URL = 'http://localhost:3000/users/'
 
 class AddItemModal extends React.Component {
@@ -50,7 +50,7 @@ class AddItemModal extends React.Component {
     })
 
     return (
-      <div id="myModal" className="modal">
+      <div className="modal">
         <div className="modal-content">
           <span className="close" onClick={this.props.onClose}>&times;</span>
 
@@ -62,7 +62,8 @@ class AddItemModal extends React.Component {
               Description:
               <input
                 name="description"
-                onChange={this.handleChange} />
+                onChange={this.handleChange}
+                required />
             </label>
 
             <label>
@@ -77,7 +78,8 @@ class AddItemModal extends React.Component {
               <input
                 list="category"
                 name="category"
-                onChange={this.handleChange} />
+                onChange={this.handleChange}
+                required />
                 <datalist id="category">
                   {this.props.categories.map((cc, idx) => {
                     return <option value={cc.name} key={idx} />
@@ -89,7 +91,8 @@ class AddItemModal extends React.Component {
               Room:
               <select
                 name="room"
-                onChange={this.handleChange} >
+                onChange={this.handleChange}
+                required >
                   <option value="" selected disabled hidden>Choose a room</option>
                   {this.props.rooms.map((rr, idx) => {
                     return (
@@ -105,7 +108,8 @@ class AddItemModal extends React.Component {
               Location in {this.state.room}:
               <select
                 name="location"
-                onChange={this.handleChange} >
+                onChange={this.handleChange}
+                required >
                   <option value="" selected disabled hidden>Choose a room</option>
                   {chosenRoom.locations.map((ll, idx) => {
                     return (

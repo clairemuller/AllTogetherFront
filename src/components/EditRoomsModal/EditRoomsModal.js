@@ -1,6 +1,6 @@
 import React from 'react';
 import ConfirmationModal from '../ConfirmationModal/ConfirmationModal'
-import '../App.css';
+import '../../css/Modal.css';
 const URL = 'http://localhost:3000/users/'
 
 class EditRoomsModal extends React.Component {
@@ -126,22 +126,24 @@ class EditRoomsModal extends React.Component {
 
     return (
       <>
-      <div id="myModal" className="modal">
+      <div className="modal">
         <div className="modal-content">
           <span className="close" onClick={this.props.onClose}>&times;</span>
 
           <h2>Current Rooms</h2>
 
-          {this.props.rooms.map((room, idx) => {
-            return (
-              <div
-                key={idx}
-                id='room'
-                onClick={this.handleClick} >
-                {room.name}
-              </div>
-            )
-          })}
+          <div className='current-rooms-container'>
+            {this.props.rooms.map((room, idx) => {
+              return (
+                <div
+                  key={idx}
+                  className='current-room'
+                  onClick={this.handleClick} >
+                  {room.name}
+                </div>
+              )
+            })}
+          </div>
 
           {this.state.name.length === 0 ? null :
             <div>
