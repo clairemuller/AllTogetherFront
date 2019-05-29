@@ -16,6 +16,7 @@
 
 #site-name {
   margin-left: 3%;
+  font-weight: bold;
 }
 
 #navbar-right {
@@ -34,4 +35,8 @@ button.google-button {
   font-family: 'Nunito Sans';
   border-radius: 6px;
   padding: 7px;
+}
+
+button.google-button:hover {
+  font-weight: bold;
 }

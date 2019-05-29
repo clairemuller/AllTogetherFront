@@ -12,28 +12,50 @@ button.button-bar-button {
   font-size: 15px;
   font-family: 'Nunito Sans';
   border-radius: 6px;
-  /* padding: 7px; */
+}
+
+button.button-bar-button:hover {
+  font-weight: bold;
 }
 
 #itemsListContainer {
+  margin: 0px 10px;
 }
 
-#itemsListTable {
+table {
   width: 100%;
   border-bottom: 1px solid black;
-  padding: 1%;
   height: auto;
+  border-collapse: collapse;
+}
+
+/* table headers */
+th {
+  font-size: 20px;
+  padding: 1px 6px;
+  text-align: left;
+  background-color: #f1f1f1;
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+  border-bottom: 1px solid black;
 }
 
 th:hover {
   cursor: pointer;
 }
 
-#tableHeader {
-  text-align: left;
-  background-color: #f1f1f1;
+/* columns */
+td {
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+  padding: 1px 6px;
 }
 
-#top {
-  padding: 10px;
+/* rows */
+tr {
+}
+
+tr:hover {
+  cursor: pointer;
+  font-weight: bold;
 }
