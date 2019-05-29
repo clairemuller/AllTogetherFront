@@ -1,4 +1,5 @@
 import React from 'react';
+import ConfirmationModal from '../ConfirmationModal/ConfirmationModal'
 import './EditRoomsModal.css';
 const URL = 'http://localhost:3000/users/'
 
@@ -10,8 +11,25 @@ class EditRoomsModal extends React.Component {
       roomId: 0,
       name: '',
       locations: '',
-      editName: ''
+      editName: '',
+      addLocations: '',
+      roomConfirmationModalIsOpen: false,
+      locationConfirmationModalIsOpen: false,
+      locationIdToDelete: 0
     }
+  }
+
+  toggleRoomConfirmationModal = () => {
+    this.setState({
+      roomConfirmationModalIsOpen: !this.state.roomConfirmationModalIsOpen
+    })
+  }
+
+  toggleLocationConfirmationModal = (id) => {
+    this.setState({
+      locationConfirmationModalIsOpen: !this.state.locationConfirmationModalIsOpen,
+      locationIdToDelete: id
+    })
   }
 
   handleSubmit = (event) => {
@@ -32,6 +50,7 @@ class EditRoomsModal extends React.Component {
   }
 
   handleRoomDelete = (event) => {
+    debugger
     event.preventDefault();
     fetch(URL + `${this.props.userId}/rooms`, {
       method: 'DELETE',
@@ -47,8 +66,8 @@ class EditRoomsModal extends React.Component {
     })
   }
 
-  handleLocationDelete = (locationId, event) => {
-    event.preventDefault();
+  handleLocationDelete = (locationId) => {
+    // event.preventDefault();
     fetch(URL + `${this.props.userId}/locations`, {
       method: 'DELETE',
       headers: {
@@ -66,7 +85,12 @@ class EditRoomsModal extends React.Component {
   handleChange = (event) => {
     const { name, value } = event.target;
 
-    if (name !== 'name') {
+    if (name === 'name') {
+      // update room name
+      this.setState({ editName: value })
+    } else if (name === 'newLocations') {
+      this.setState({ addLocations: value })
+    } else {
       // update location name
       let locIndex = this.state.locations.findIndex(ll => {
         return ll.id === parseInt(name)
@@ -77,11 +101,6 @@ class EditRoomsModal extends React.Component {
 
       this.setState({
         locations: locationsCopy
-      })
-    } else {
-      // update room name
-      this.setState({
-        editName: value
       })
     }
   }
@@ -107,6 +126,7 @@ class EditRoomsModal extends React.Component {
     }
 
     return (
+      <>
       <div id="myModal" className="modal">
         <div className="modal-content">
           <span className="close" onClick={this.props.onClose}>&times;</span>
@@ -133,29 +153,41 @@ class EditRoomsModal extends React.Component {
                 <label>
                   room name:
                   <div>
-                    <button onClick={this.handleRoomDelete}>
-                    X
-                    </button>
                     <input name="name"
                       onChange={this.handleChange}
                       value={this.state.editName} />
+                    <span
+                      className='delete'
+                      onClick={this.toggleRoomConfirmationModal}>
+                      &times;
+                    </span>
                   </div>
                 </label>
 
+                {this.state.locations.length !== 0 ?
+                  <label>
+                    room locations:
+                    {this.state.locations.map((ll, idx) => {
+                      return (
+                        <div key={idx}>
+                          <input
+                            value={ll.name}
+                            name={ll.id}
+                            onChange={this.handleChange} />
+                          <span
+                            className='delete'
+                            onClick={() => this.toggleLocationConfirmationModal(ll.id)}>
+                            &times;
+                          </span>
+                        </div>
+                      )})}
+                  </label>
+                : null
+                }
                 <label>
-                  room locations:
-                  {this.state.locations.map((ll, idx) => {
-                    return (
-                      <div key={idx}>
-                      <button onClick={(event) => this.handleLocationDelete(ll.id, event)}>
-                      X
-                      </button>
-                        <input
-                          value={ll.name}
-                          name={ll.id}
-                          onChange={this.handleChange} />
-                      </div>
-                    )})}
+                add locations:
+                <input name="newLocations"
+                onChange={this.handleChange} />
                 </label>
 
                 <input
@@ -167,8 +199,34 @@ class EditRoomsModal extends React.Component {
 
         </div>
       </div>
+
+      {this.state.roomConfirmationModalIsOpen ?
+        <ConfirmationModal
+          show={this.state.roomConfirmationModalIsOpen}
+          onYes={this.handleRoomDelete}
+          onNo={this.toggleRoomConfirmationModal}
+          />
+        :
+        null}
+
+      {this.state.locationConfirmationModalIsOpen ?
+        <ConfirmationModal
+          show={this.state.locationConfirmationModalIsOpen}
+          onYes={this.handleLocationDelete}
+          onNo={this.toggleLocationConfirmationModal}
+          locationId={this.state.locationIdToDelete}
+          />
+        :
+        null}
+      </>
     )
   }
 }
 
 export default EditRoomsModal;
+
+// <span
+//   className='delete'
+//   onClick={(event) => this.handleLocationDelete(ll.id, event)}>
+//   &times;
+// </span>

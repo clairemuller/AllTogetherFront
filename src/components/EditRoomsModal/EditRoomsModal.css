@@ -27,6 +27,17 @@
   font-weight: bold;
 }
 
+/* Delete Button */
+.delete {
+  color: red;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.delete:hover {
+  cursor: pointer;
+}
+
 .close:hover,
 .close:focus {
   color: black;

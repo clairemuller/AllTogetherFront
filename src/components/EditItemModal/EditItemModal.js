@@ -1,4 +1,5 @@
 import React from 'react';
+import ConfirmationModal from '../ConfirmationModal/ConfirmationModal'
 import './EditItemModal.css';
 const URL = 'http://localhost:3000/users/'
 
@@ -12,7 +13,8 @@ class EditItemModal extends React.Component {
       room: '',
       category: '',
       note: '',
-      id: ''
+      id: '',
+      confirmationModalIsOpen: false
     }
   }
 
@@ -85,6 +87,13 @@ class EditItemModal extends React.Component {
     })
   }
 
+  toggleConfirmationModal = (event) => {
+    event.preventDefault()
+    this.setState({
+      confirmationModalIsOpen: !this.state.confirmationModalIsOpen
+    })
+  }
+
   render() {
     if(!this.props.show) {
       return null;
@@ -97,6 +106,7 @@ class EditItemModal extends React.Component {
     })
 
     return (
+      <>
       <div id="myModal" className="modal">
         <div className="modal-content">
           <span className="close" onClick={this.props.onClose}>&times;</span>
@@ -170,13 +180,23 @@ class EditItemModal extends React.Component {
               type="submit"
               value="Submit" />
 
-            <button onClick={this.handleDelete}>
+            <button onClick={this.toggleConfirmationModal}>
               Delete Item
             </button>
 
           </form>
         </div>
       </div>
+
+      {this.state.confirmationModalIsOpen ?
+        <ConfirmationModal
+          show={this.state.confirmationModalIsOpen}
+          onYes={this.handleDelete}
+          onNo={this.toggleConfirmationModal}
+          />
+        :
+        null}
+      </>
     )
   }
 }

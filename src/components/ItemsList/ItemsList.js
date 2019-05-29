@@ -64,24 +64,6 @@ class ItemsList extends React.Component {
   }
 
   closeEditRoomsModal = (needToUpdate) => {
-    // if (method === 'delete') {
-    //   let room = this.props.rooms.find(room => {
-    //     return room.id === editedRoom.id
-    //       let i = this.props.rooms.indexOf(room)
-    //       this.props.rooms.splice(i, 1)
-    //   })
-    //   let newItemsProps = this.props.items.filter(item => {
-    //     return item.location.room.id === room.id
-    //   })
-    // } else if (method === 'edit') {
-    //   this.props.rooms.map(room => {
-    //     if (room.id === editedRoom.id) {
-    //       let i = this.props.rooms.indexOf(room)
-    //       this.props.rooms[i] = editedRoom
-    //     }
-    //     return room
-    //   })
-    // }
     if (needToUpdate === true) {
       this.props.onStateUpdate()
     }

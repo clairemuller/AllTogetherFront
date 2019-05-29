@@ -11,35 +11,25 @@
 }
 
 /* Modal Content/Box */
-.modal-content {
+.confirm-modal-content {
   background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
+  margin: 25% auto; /* 15% from the top and centered */
   padding: 20px;
   border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+  width: 40%; /* Could be more or less, depending on screen size */
+  text-align: center;
 }
 
-/* The Close Button */
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
+.confirm {
+  display: inline-block;
+  padding: 10px;
+  margin: 10px;
+  border: black;
+  border-style: solid;
+  border-width: 1px;
 }
 
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
+.confirm:hover {
   cursor: pointer;
-}
-
-label {
-  display: grid;
-  padding: 10px;
-}
-
-#addLocation {
-  display: grid;
-  padding: 10px;
+  font-weight: bold;
 }

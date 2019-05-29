@@ -14,18 +14,21 @@ class AddRoomModal extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault()
 
-    fetch(URL + `${this.props.userId}/rooms`, {
-      method: 'POST',
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      },
-      body: JSON.stringify(this.state)
-    })
-    .then(res => res.json())
-    .then(newRoomData => {
-      this.props.onClose(newRoomData)
-    })
+    // prevents submitting blank room
+    if (this.state.room.length !== 0) {
+      fetch(URL + `${this.props.userId}/rooms`, {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(this.state)
+      })
+      .then(res => res.json())
+      .then(newRoomData => {
+        this.props.onClose(newRoomData)
+      })
+    }
   }
 
   handleChange = (event) => {
@@ -47,12 +50,17 @@ class AddRoomModal extends React.Component {
           <span className="close" onClick={this.props.onClose}>&times;</span>
 
           <h2>Add Room</h2>
-          current rooms:
-          <ul>
-            {this.props.rooms.map((room, idx) => {
-              return <li key={idx}>{room.name}</li>
-            })}
-          </ul>
+          {this.props.rooms.length !== 0 ?
+            <div>
+              current rooms:
+              <ul>
+                {this.props.rooms.map((room, idx) => {
+                  return <li key={idx}>{room.name}</li>
+                })}
+              </ul>
+            </div>
+          : null
+          }
 
           <form onSubmit={this.handleSubmit}>
 
@@ -69,7 +77,7 @@ class AddRoomModal extends React.Component {
               <input name="locations"
                 onChange={this.handleChange} />
             </label>
-          }
+            }
 
             <input
               type="submit"
