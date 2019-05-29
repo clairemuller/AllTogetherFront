@@ -1,5 +1,5 @@
 import React from 'react';
-import './ConfirmationModal.css';
+import '../App.css';
 
 class ConfirmationModal extends React.Component {
   render() {

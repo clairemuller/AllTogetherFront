@@ -5,7 +5,6 @@ import AddItemModal from '../AddItemModal/AddItemModal';
 import EditItemModal from '../EditItemModal/EditItemModal';
 import AddRoomModal from '../AddRoomModal/AddRoomModal';
 import EditRoomsModal from '../EditRoomsModal/EditRoomsModal';
-const URL = 'http://localhost:3000/users/'
 
 class ItemsList extends React.Component {
   constructor(props) {

@@ -1,6 +1,6 @@
 import React from 'react';
 import ConfirmationModal from '../ConfirmationModal/ConfirmationModal'
-import './EditItemModal.css';
+import '../App.css';
 const URL = 'http://localhost:3000/users/'
 
 class EditItemModal extends React.Component {

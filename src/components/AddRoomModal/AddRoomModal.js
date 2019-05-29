@@ -1,5 +1,5 @@
 import React from 'react';
-import './AddRoomModal.css';
+import '../App.css';
 const URL = 'http://localhost:3000/users/'
 
 class AddRoomModal extends React.Component {

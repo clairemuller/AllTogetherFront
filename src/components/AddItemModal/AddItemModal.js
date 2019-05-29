@@ -1,5 +1,5 @@
 import React from 'react';
-import './AddItemModal.css';
+import '../App.css';
 const URL = 'http://localhost:3000/users/'
 
 class AddItemModal extends React.Component {

@@ -1,9 +1,8 @@
 import React from 'react';
-import './MainContainer.css';
-// import SearchBar from '../SearchBar/SearchBar';
+import '../App.css';
+import SearchBar from '../SearchBar/SearchBar';
 import ItemsList from '../ItemsList/ItemsList';
 import NavBar from '../NavBar/NavBar';
-// import ButtonBar from '../ButtonBar/ButtonBar';
 
 class MainContainer extends React.Component {
 
@@ -20,10 +19,7 @@ class MainContainer extends React.Component {
           logoutHandler={this.props.logoutHandler}
           name={username}
         />
-        {// <SearchBar />
-        }
-        {// <ButtonBar />
-        }
+        <SearchBar />
         <ItemsList
           items={items}
           rooms={rooms}
