@@ -3,8 +3,8 @@ import '../../css/ItemsList.css';
 import Item from '../Item/Item';
 import AddItemModal from '../AddItemModal/AddItemModal';
 import EditItemModal from '../EditItemModal/EditItemModal';
-import AddRoomModal from '../AddRoomModal/AddRoomModal';
-import EditRoomsModal from '../EditRoomsModal/EditRoomsModal';
+// import AddRoomModal from '../AddRoomModal/AddRoomModal';
+import RoomsModal from '../RoomsModal/RoomsModal';
 
 class ItemsList extends React.Component {
   constructor(props) {
@@ -13,8 +13,8 @@ class ItemsList extends React.Component {
     this.state = {
       editItemModalIsOpen: false,
       addItemModalIsOpen: false,
-      editRoomsModalIsOpen: false,
-      addRoomModalIsOpen: false,
+      roomsModalIsOpen: false,
+      // addRoomModalIsOpen: false,
       clickedItem: ''
     }
   }
@@ -46,29 +46,33 @@ class ItemsList extends React.Component {
     })
   }
 
-  toggleAddRoomModal = (room) => {
-    // if new room was created, update state in parent
-    if (room.id) {
-      this.props.onStateUpdate(room, 'rooms', 'add')
-    }
+  // toggleAddRoomModal = (room) => {
+  //   // if new room was created, update state in parent
+  //   if (room.id) {
+  //     this.props.onStateUpdate(room, 'rooms', 'add')
+  //   }
+  //   this.setState({
+  //     addRoomModalIsOpen: !this.state.addRoomModalIsOpen
+  //   })
+  // }
+
+  openRoomsModal = () => {
     this.setState({
-      addRoomModalIsOpen: !this.state.addRoomModalIsOpen
+      roomsModalIsOpen: !this.state.roomsModalIsOpen
     })
   }
 
-  openEditRoomsModal = () => {
-    this.setState({
-      editRoomsModalIsOpen: !this.state.editRoomsModalIsOpen
-    })
-  }
-
-  closeEditRoomsModal = (needToUpdate) => {
+  closeRoomsModal = (needToUpdate) => {
     if (needToUpdate === true) {
       this.props.onStateUpdate()
     }
     this.setState({
-      editRoomsModalIsOpen: !this.state.editRoomsModalIsOpen
+      roomsModalIsOpen: !this.state.roomsModalIsOpen
     })
+  }
+
+  handleStateUpdate = () => {
+    this.props.onStateUpdate()
   }
 
   sortTable(n) {
@@ -121,7 +125,7 @@ class ItemsList extends React.Component {
           <div id='button-bar'>
             {this.props.rooms.length === 0 ?
                 <button className='button-bar-button' type="button"
-                  onClick={this.toggleAddRoomModal}>
+                  onClick={this.toggleRoomsModal}>
                   Add Room
                 </button>
               :
@@ -130,13 +134,14 @@ class ItemsList extends React.Component {
                   onClick={this.toggleAddItemModal}>
                   Add Item
                 </button>
+                {// <button className='button-bar-button' type="button"
+                //   onClick={this.toggleAddRoomModal}>
+                //   Add Room
+                // </button>
+                }
                 <button className='button-bar-button' type="button"
-                  onClick={this.toggleAddRoomModal}>
-                  Add Room
-                </button>
-                <button className='button-bar-button' type="button"
-                  onClick={this.openEditRoomsModal}>
-                  Edit Rooms
+                  onClick={this.openRoomsModal}>
+                  Add/Edit Rooms
                 </button>
               </>
             }
@@ -194,22 +199,24 @@ class ItemsList extends React.Component {
           :
           null}
 
-        {this.state.addRoomModalIsOpen ?
-          <AddRoomModal
-            show={this.state.addRoomModalIsOpen}
-            onClose={this.toggleAddRoomModal}
-            userId={userId}
-            rooms={rooms}
-            />
-          :
-          null}
+        {// {this.state.addRoomModalIsOpen ?
+        //   <AddRoomModal
+        //     show={this.state.addRoomModalIsOpen}
+        //     onClose={this.toggleAddRoomModal}
+        //     userId={userId}
+        //     rooms={rooms}
+        //     />
+        //   :
+        //   null}
+      }
 
-        {this.state.editRoomsModalIsOpen ?
-          <EditRoomsModal
-            show={this.state.editRoomsModalIsOpen}
-            onClose={this.closeEditRoomsModal}
+        {this.state.roomsModalIsOpen ?
+          <RoomsModal
+            show={this.state.roomsModalIsOpen}
+            onClose={this.closeRoomsModal}
             userId={userId}
             rooms={rooms}
+            onStateUpdate={this.handleStateUpdate}
             />
           :
           null}

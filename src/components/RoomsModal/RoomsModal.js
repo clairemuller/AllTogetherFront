@@ -1,9 +1,10 @@
 import React from 'react';
 import ConfirmationModal from '../ConfirmationModal/ConfirmationModal'
+import AddRoomModal from '../AddRoomModal/AddRoomModal'
 import '../../css/Modal.css';
 const URL = 'http://localhost:3000/users/'
 
-class EditRoomsModal extends React.Component {
+class RoomsModal extends React.Component {
   constructor(props) {
     super(props)
 
@@ -15,6 +16,7 @@ class EditRoomsModal extends React.Component {
       addLocations: '',
       roomConfirmationModalIsOpen: false,
       locationConfirmationModalIsOpen: false,
+      addRoomModalIsOpen: false,
       locationIdToDelete: 0
     }
   }
@@ -29,6 +31,16 @@ class EditRoomsModal extends React.Component {
     this.setState({
       locationConfirmationModalIsOpen: !this.state.locationConfirmationModalIsOpen,
       locationIdToDelete: id
+    })
+  }
+
+  toggleAddRoomModal = (room) => {
+    // if new room was created, update state in parent
+    if (room.id) {
+      this.props.onStateUpdate()
+    }
+    this.setState({
+      addRoomModalIsOpen: !this.state.addRoomModalIsOpen
     })
   }
 
@@ -132,6 +144,12 @@ class EditRoomsModal extends React.Component {
 
           <h2>Current Rooms</h2>
 
+          <button className='button-bar-button' type="button"
+            onClick={this.toggleAddRoomModal}>
+            Add Room
+          </button>
+
+
           <div className='current-rooms-container'>
             {this.props.rooms.map((room, idx) => {
               return (
@@ -219,12 +237,22 @@ class EditRoomsModal extends React.Component {
           />
         :
         null}
+
+        {this.state.addRoomModalIsOpen ?
+          <AddRoomModal
+            show={this.state.addRoomModalIsOpen}
+            onClose={this.toggleAddRoomModal}
+            userId={this.props.userId}
+            />
+          :
+          null}
+
       </>
     )
   }
 }
 
-export default EditRoomsModal;
+export default RoomsModal;
 
 // <span
 //   className='delete'

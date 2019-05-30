@@ -49,25 +49,9 @@ class AddRoomModal extends React.Component {
         <div className="modal-content">
           <span className="close" onClick={this.props.onClose}>&times;</span>
 
-          <h2>Current Rooms</h2>
-
-            {this.props.rooms.length !== 0 ?
-              <div className='current-rooms-container'>
-                {this.props.rooms.map((room, idx) => {
-                  return (
-                    <div
-                      key={idx}
-                      className='current-room' >
-                      {room.name}
-                    </div>
-                  )
-                })}
-              </div>
-            : null
-            }
+          <h2>Add Room</h2>
 
           <form onSubmit={this.handleSubmit}>
-          <hr/>
 
             <label>
               New Room Name:
