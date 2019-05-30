@@ -144,7 +144,7 @@ class RoomsModal extends React.Component {
 
           <h2>Current Rooms</h2>
 
-          <button className='button-bar-button' type="button"
+          <button type="button"
             onClick={this.toggleAddRoomModal}>
             Add Room
           </button>

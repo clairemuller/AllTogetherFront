@@ -113,7 +113,7 @@ class ItemsList extends React.Component {
           <div id='button-bar'>
             {this.props.rooms.length === 0 ?
                 <button className='button-bar-button' type="button"
-                  onClick={this.toggleRoomsModal}>
+                  onClick={this.openRoomsModal}>
                   Add Room
                 </button>
               :
@@ -133,11 +133,11 @@ class ItemsList extends React.Component {
           <table id='itemsListTable'>
             <tbody>
               <tr id='tableHeader'>
-                <th onClick={() => this.sortTable(0)}>Item</th>
-                <th onClick={() => this.sortTable(1)}>Location</th>
-                <th onClick={() => this.sortTable(2)}>Room</th>
-                <th onClick={() => this.sortTable(3)}>Category</th>
-                <th onClick={() => this.sortTable(4)}>Note</th>
+                <th onClick={() => this.sortTable(0)}>ITEM</th>
+                <th onClick={() => this.sortTable(1)}>LOCATION</th>
+                <th onClick={() => this.sortTable(2)}>ROOM</th>
+                <th onClick={() => this.sortTable(3)}>CATEGORY</th>
+                <th onClick={() => this.sortTable(4)}>NOTE</th>
               </tr>
               {items.map(item => {
                 return (

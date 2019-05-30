@@ -1,11 +1,9 @@
 #navBar {
-  border-bottom: 1px solid black;
-  height: 50px;
-  background-color: rgb(241, 241, 241, 0.8);
+  height: 60px;
+  background-color: #BC4639;
   display: flex;
   flex-direction: row;
-  font-size: 25px;
-  font-family: 'Nunito Sans';
+  font-family: 'Dosis', sans-serif;
 }
 
 #navbar-left {
@@ -17,6 +15,8 @@
 #site-name {
   margin-left: 3%;
   font-weight: bold;
+  color: #f9f1ef;
+  font-size: 40px;
 }
 
 #navbar-right {
@@ -27,16 +27,26 @@
 }
 
 #username {
+  color: #f9f1ef;
+  font-size: 30px;
+  margin-right: 2%;
 }
 
 button.google-button {
-  margin: 1% 3%;
+  background-color: #BC4639;
+  color: #f9f1ef;
+  border: none;
+  border-bottom: none;
+  margin: 0px;
   font-size: 15px;
-  font-family: 'Nunito Sans';
-  border-radius: 6px;
-  padding: 7px;
+  font-family: 'Dosis', sans-serif;
+  border-radius: 0px;
+  font-weight: bold;
 }
 
 button.google-button:hover {
+  background-color: #f9f1ef;
+  color: #BC4639;
   font-weight: bold;
+  height: 100%;
 }

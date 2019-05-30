@@ -1,6 +1,5 @@
 #button-bar {
-  border-bottom: 1px solid black;
-  height: 50px;
+  height: 70px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -8,38 +7,42 @@
 
 button.button-bar-button {
   height: 40px;
-  margin: 0px 10px;
-  font-size: 15px;
-  font-family: 'Nunito Sans';
+  margin: 0px 20px;
+  font-size: 20px;
+  font-family: 'Dosis', sans-serif;
   border-radius: 6px;
+  background-color: #f9f1ef;
+  border: 0px;
 }
 
 button.button-bar-button:hover {
   font-weight: bold;
+  font-size: 25px;
+  color: #BC4639;
 }
 
 #itemsListContainer {
-  margin: 15px;
-  margin-top: 0px;
+  margin: 25px;
+  margin-top: 10px;
+  font-family: 'Nunito Sans';
 }
 
 table {
   width: 100%;
-  border-bottom: 1px solid black;
+  border: 1px solid #8E8D8A;
   height: auto;
   border-collapse: collapse;
-  background-color: rgb(241, 241, 241, 0.5);
+  input[type=submit]:hover
 }
 
 /* table headers */
 th {
-  font-size: 20px;
-  padding: 1px 6px;
+  font-size: 15px;
+  color: #f9f1ef;
+  padding: 5px 8px;
   text-align: left;
-  background-color: rgb(241, 241, 241, 0.8);
-  border-right: 1px solid black;
-  border-left: 1px solid black;
-  border-bottom: 1px solid black;
+  background-color: #BC4639;
+  border: 1px solid #8E8D8A;
 }
 
 th:hover {
@@ -48,9 +51,10 @@ th:hover {
 
 /* columns */
 td {
-  border-right: 1px solid black;
-  border-left: 1px solid black;
-  padding: 2px 6px;
+  border-right: 1px solid #8E8D8A;
+  border-left: 1px solid #8E8D8A;
+  padding: 5px 8px;
+  color: #282828;
 }
 
 /* rows */
@@ -58,7 +62,7 @@ tr {
 }
 
 tr:nth-child(odd) {
-  background-color: rgb(241, 241, 241, 0.8);
+  background-color: rgb(233, 128, 116, 0.2)
 }
 
 tr:hover {
