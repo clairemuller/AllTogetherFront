@@ -14,21 +14,18 @@ class AddRoomModal extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault()
 
-    // prevents submitting blank room
-    if (this.state.room.length !== 0) {
-      fetch(URL + `${this.props.userId}/rooms`, {
-        method: 'POST',
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: JSON.stringify(this.state)
-      })
-      .then(res => res.json())
-      .then(newRoomData => {
-        this.props.onClose(newRoomData)
-      })
-    }
+    fetch(URL + `${this.props.userId}/rooms`, {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(this.state)
+    })
+    .then(res => res.json())
+    .then(newRoomData => {
+      this.props.onClose(newRoomData)
+    })
   }
 
   handleChange = (event) => {
@@ -65,7 +62,8 @@ class AddRoomModal extends React.Component {
             <label>
               Add locations:
               <input name="locations"
-                onChange={this.handleChange} />
+                onChange={this.handleChange}
+                required />
             </label>
             }
 

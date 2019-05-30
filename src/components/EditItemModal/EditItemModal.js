@@ -80,7 +80,7 @@ class EditItemModal extends React.Component {
           })
         } else {
           this.setState({
-            location: 'no locations'
+            location: null
           })
         }
       }
@@ -161,19 +161,19 @@ class EditItemModal extends React.Component {
             </label>
 
             {this.state.room.length === 0 ? null :
-            <label>
-              Location in {this.state.room}:
-              <select
-                name="location"
-                onChange={this.handleChange} >
-                  {chosenRoom.locations.map((ll, idx) => {
-                    return (
-                      ll.name === location ?
-                      <option value={location} key={idx} selected>{location}</option> :
-                      <option value={ll.name} key={idx} >{ll.name}</option>                    )
-                  })}
-              </select>
-            </label>
+              <label>
+                Location in {this.state.room}:
+                <select
+                  name="location"
+                  onChange={this.handleChange} >
+                    {chosenRoom.locations.map((ll, idx) => {
+                      return (
+                        ll.name === location ?
+                        <option value={location} key={idx} selected>{location}</option> :
+                        <option value={ll.name} key={idx} >{ll.name}</option>
+                      )})}
+                </select>
+              </label>
             }
 
             <input

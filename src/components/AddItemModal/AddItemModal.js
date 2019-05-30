@@ -44,7 +44,7 @@ class AddItemModal extends React.Component {
       return null;
     }
 
-    // allows conditional render of rooms locations
+    // allows conditional render of locations in room
     let chosenRoom = this.props.rooms.find(room => {
       return room.name === this.state.room
     })
@@ -104,22 +104,21 @@ class AddItemModal extends React.Component {
 
             {this.state.room.length === 0 ? null :
 
-            <label>
+              <label>
               Location in {this.state.room}:
-              <select
-                name="location"
-                onChange={this.handleChange}
-                required >
-                  <option value="" selected disabled hidden>Choose a room</option>
-                  {chosenRoom.locations.map((ll, idx) => {
-                    return (
-                      <option value={ll.name} key={idx} >{ll.name}</option>
-                    )
-                  })}
-
-              </select>
-            </label>
-          }
+                <select
+                  name="location"
+                  onChange={this.handleChange}
+                  required >
+                    <option value="" selected disabled hidden>Choose a location</option>
+                    {chosenRoom.locations.map((ll, idx) => {
+                      return (
+                        <option value={ll.name} key={idx} >{ll.name}</option>
+                      )
+                    })}
+                </select>
+              </label>
+            }
             <input
               type="submit"
               value="Submit" />

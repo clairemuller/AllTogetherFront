@@ -3,7 +3,6 @@ import '../../css/ItemsList.css';
 import Item from '../Item/Item';
 import AddItemModal from '../AddItemModal/AddItemModal';
 import EditItemModal from '../EditItemModal/EditItemModal';
-// import AddRoomModal from '../AddRoomModal/AddRoomModal';
 import RoomsModal from '../RoomsModal/RoomsModal';
 
 class ItemsList extends React.Component {
@@ -14,7 +13,6 @@ class ItemsList extends React.Component {
       editItemModalIsOpen: false,
       addItemModalIsOpen: false,
       roomsModalIsOpen: false,
-      // addRoomModalIsOpen: false,
       clickedItem: ''
     }
   }
@@ -45,16 +43,6 @@ class ItemsList extends React.Component {
       addItemModalIsOpen: !this.state.addItemModalIsOpen
     })
   }
-
-  // toggleAddRoomModal = (room) => {
-  //   // if new room was created, update state in parent
-  //   if (room.id) {
-  //     this.props.onStateUpdate(room, 'rooms', 'add')
-  //   }
-  //   this.setState({
-  //     addRoomModalIsOpen: !this.state.addRoomModalIsOpen
-  //   })
-  // }
 
   openRoomsModal = () => {
     this.setState({
@@ -134,11 +122,6 @@ class ItemsList extends React.Component {
                   onClick={this.toggleAddItemModal}>
                   Add Item
                 </button>
-                {// <button className='button-bar-button' type="button"
-                //   onClick={this.toggleAddRoomModal}>
-                //   Add Room
-                // </button>
-                }
                 <button className='button-bar-button' type="button"
                   onClick={this.openRoomsModal}>
                   Add/Edit Rooms
@@ -198,17 +181,6 @@ class ItemsList extends React.Component {
             />
           :
           null}
-
-        {// {this.state.addRoomModalIsOpen ?
-        //   <AddRoomModal
-        //     show={this.state.addRoomModalIsOpen}
-        //     onClose={this.toggleAddRoomModal}
-        //     userId={userId}
-        //     rooms={rooms}
-        //     />
-        //   :
-        //   null}
-      }
 
         {this.state.roomsModalIsOpen ?
           <RoomsModal
