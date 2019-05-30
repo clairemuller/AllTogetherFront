@@ -19,7 +19,8 @@ button.button-bar-button:hover {
 }
 
 #itemsListContainer {
-  margin: 0px 10px;
+  margin: 15px;
+  margin-top: 0px;
 }
 
 table {
@@ -49,11 +50,15 @@ th:hover {
 td {
   border-right: 1px solid black;
   border-left: 1px solid black;
-  padding: 1px 6px;
+  padding: 2px 6px;
 }
 
 /* rows */
 tr {
+}
+
+tr:nth-child(odd) {
+  background-color: rgb(241, 241, 241, 0.8);
 }
 
 tr:hover {
