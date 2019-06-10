@@ -2,7 +2,7 @@ import React from 'react';
 import ConfirmationModal from '../ConfirmationModal/ConfirmationModal'
 import AddRoomModal from '../AddRoomModal/AddRoomModal'
 import '../../css/Modal.css';
-const URL = 'http://localhost:3000/users/'
+const URL = 'https://all-together-app-backend.herokuapp.com/users/'
 
 class RoomsModal extends React.Component {
   constructor(props) {

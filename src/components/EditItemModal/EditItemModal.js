@@ -1,7 +1,7 @@
 import React from 'react';
 import ConfirmationModal from '../ConfirmationModal/ConfirmationModal'
 import '../../css/Modal.css';
-const URL = 'http://localhost:3000/users/'
+const URL = 'https://all-together-app-backend.herokuapp.com/users/'
 
 class EditItemModal extends React.Component {
   constructor(props) {

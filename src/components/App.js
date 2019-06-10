@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import MainContainer from './MainContainer/MainContainer'
 import LoginPage from './LoginPage'
-const URL = 'http://localhost:3000/';
+const URL = 'https://all-together-app-backend.herokuapp.com/'
 
 class App extends React.Component {
   constructor(props) {
