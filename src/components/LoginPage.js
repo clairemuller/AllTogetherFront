@@ -13,6 +13,7 @@ class LoginPage extends React.Component {
 
   failure(response) {
     alert('Login failed!')
+    console.log(response);
   }
 
   async onSignIn(googleUser) {
