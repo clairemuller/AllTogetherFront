@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../css/Modal.css';
+import '../../css/App.scss';
 const URL = 'https://all-together-app-backend.herokuapp.com/users/'
 
 class AddItemModal extends React.Component {

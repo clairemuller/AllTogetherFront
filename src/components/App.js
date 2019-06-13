@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import '../css/App.scss';
 import MainContainer from './MainContainer/MainContainer'
 import LoginPage from './LoginPage'
 const URL = 'https://all-together-app-backend.herokuapp.com/users'

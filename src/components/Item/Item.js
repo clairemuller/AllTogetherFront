@@ -1,5 +1,5 @@
 import React from 'react';
-import '../App.css';
+import '../../css/App.scss';
 
 class Item extends React.Component {
   render() {
