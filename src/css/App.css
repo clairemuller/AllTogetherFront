@@ -84,12 +84,11 @@ button.google-button {
   font-family: 'Dosis', sans-serif;
   border-radius: 0px;
   font-weight: bold; }
-
-button.google-button:hover {
-  background-color: #f9f1ef;
-  color: #BC4639;
-  font-weight: bold;
-  height: 100%; }
+  button.google-button:hover {
+    background-color: #f9f1ef;
+    color: #BC4639;
+    font-weight: bold;
+    height: 100%; }
 
 /* END NAVBAR */
 /* START ITEMS LIST */
@@ -107,11 +106,10 @@ button.button-bar-button {
   border-radius: 6px;
   background-color: #f9f1ef;
   border: 0px; }
-
-button.button-bar-button:hover {
-  font-weight: bold;
-  font-size: 25px;
-  color: #BC4639; }
+  button.button-bar-button:hover {
+    font-weight: bold;
+    font-size: 25px;
+    color: #BC4639; }
 
 #itemsListContainer {
   margin: 25px;
@@ -132,9 +130,8 @@ th {
   text-align: left;
   background-color: #E98074;
   border: 1px solid #8E8D8A; }
-
-th:hover {
-  cursor: pointer; }
+  th:hover {
+    cursor: pointer; }
 
 /* columns */
 td {
@@ -143,10 +140,8 @@ td {
   padding: 5px 8px;
   color: #282828; }
 
-/* rows */
 tr:nth-child(odd) {
   background-color: #f6dbd6; }
-
 tr:hover {
   cursor: pointer;
   font-weight: bold; }
@@ -181,6 +176,8 @@ tr:hover {
   padding: 20px;
   width: 50%;
   /* Could be more or less, depending on screen size */ }
+  .modal-content h2 {
+    margin: 8px; }
 
 /* Confirmation Modal */
 .confirm-modal-content {
@@ -210,27 +207,20 @@ button.confirm {
   float: right;
   font-size: 28px;
   font-weight: bold; }
-
-.close:hover, .close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer; }
+  .close:hover, .close :focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer; }
 
 /* FORM STYLING */
-/* header on form */
-.modal-content h2 {
-  margin: 8px; }
-
 label {
   display: grid;
   padding: 8px;
   font-size: 18px; }
-
-label input {
-  padding: 7px;
-  border-radius: 4px;
-  font-size: 16px;
-  /* background-color: $lightest-color; */ }
+  label input {
+    padding: 7px;
+    border-radius: 4px;
+    font-size: 16px; }
 
 input[type=submit], button {
   height: 40px;
