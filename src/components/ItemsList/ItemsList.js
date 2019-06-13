@@ -1,9 +1,9 @@
 import React from 'react';
 import '../../css/ItemsList.css';
 import Item from '../Item/Item';
-import AddItemModal from '../AddItemModal/AddItemModal';
-import EditItemModal from '../EditItemModal/EditItemModal';
-import RoomsModal from '../RoomsModal/RoomsModal';
+import AddItemModal from '../modals/AddItemModal';
+import EditItemModal from '../modals/EditItemModal';
+import RoomsModal from '../modals/RoomsModal';
 
 class ItemsList extends React.Component {
   constructor(props) {

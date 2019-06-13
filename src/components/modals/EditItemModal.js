@@ -1,5 +1,5 @@
 import React from 'react';
-import ConfirmationModal from '../ConfirmationModal/ConfirmationModal'
+import ConfirmationModal from './ConfirmationModal'
 import '../../css/Modal.css';
 const URL = 'https://all-together-app-backend.herokuapp.com/users/'
 

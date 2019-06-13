@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import MainContainer from './MainContainer/MainContainer'
 import LoginPage from './LoginPage'
-const URL = 'https://all-together-app-backend.herokuapp.com/'
+const URL = 'https://all-together-app-backend.herokuapp.com/users'
 
 class App extends React.Component {
   constructor(props) {
@@ -37,7 +37,7 @@ class App extends React.Component {
   }
 
   findOrCreateUser(username) {
-    fetch(URL + 'users', {
+    fetch(URL, {
       method: 'POST',
       headers: {
         "Content-Type": "application/json",
@@ -56,13 +56,13 @@ class App extends React.Component {
   }
 
   getItems() {
-    fetch(URL + `users/${this.state.userId}/items`)
+    fetch(URL + `/${this.state.userId}/items`)
     .then(res => res.json())
     .then(items => this.getEverything(items))
   }
 
   getEverything(items) {
-    fetch(URL + `users/${this.state.userId}/everything`)
+    fetch(URL + `/${this.state.userId}/everything`)
     .then(res => res.json())
     .then(everything => {
       this.setState({
