@@ -1,6 +1,6 @@
 import React from 'react';
 import { GoogleLogout } from 'react-google-login';
-import '../../css/NavBar.css';
+import '../../css/App.scss';
 
 class NavBar extends React.Component {
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { GoogleLogin } from 'react-google-login';
-import '../css/LoginPage.css';
+import '../css/App.scss';
 const clientId = "326315008081-629ogrdt7f7fre1a5qvq29ealcsjk05s.apps.googleusercontent.com"
 
 class LoginPage extends React.Component {

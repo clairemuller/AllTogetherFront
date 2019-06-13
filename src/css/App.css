@@ -1,0 +1,287 @@
+/* START APP */
+/* do I need this? */
+@font-face {
+  font-family: 'Nunito Sans', sans-serif;
+  src: url(../css/fonts/NunitoSans-Regular.ttf); }
+@font-face {
+  font-family: 'Dosis', sans-serif;
+  src: url(../css/fonts/Dosis-Regular.ttf); }
+body {
+  background-color: #f9f1ef; }
+
+#mainContainer {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  font-family: 'Dosis', sans-serif;
+  overflow: auto; }
+
+button:hover {
+  cursor: pointer; }
+
+/* END APP */
+/* START LOGIN PAGE */
+#login-main {
+  display: flex; }
+
+#login-container {
+  margin: 10% auto;
+  width: 100%;
+  text-align: center;
+  padding: 40px;
+  font-family: 'Dosis', sans-serif; }
+
+#login-h1 {
+  margin: 0px;
+  font-size: 70px;
+  padding-bottom: 10px;
+  color: #BC4639; }
+
+#login-h5 {
+  margin: 0px;
+  font-size: 30px;
+  padding-bottom: 20px;
+  color: #E98074; }
+
+/* END LOGIN PAGE */
+/* START NAVBAR */
+#navBar {
+  height: 60px;
+  background-color: #BC4639;
+  display: flex;
+  flex-direction: row;
+  font-family: 'Dosis', sans-serif; }
+
+#navbar-left {
+  width: 50%;
+  display: flex;
+  align-items: center; }
+
+#site-name {
+  margin-left: 3%;
+  font-weight: bold;
+  color: #f9f1ef;
+  font-size: 40px; }
+
+#navbar-right {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; }
+
+#username {
+  color: #f9f1ef;
+  font-size: 30px;
+  margin-right: 2%; }
+
+button.google-button {
+  background-color: #BC4639;
+  color: #f9f1ef;
+  border: none;
+  border-bottom: none;
+  margin: 0px;
+  font-size: 15px;
+  font-family: 'Dosis', sans-serif;
+  border-radius: 0px;
+  font-weight: bold; }
+
+button.google-button:hover {
+  background-color: #f9f1ef;
+  color: #BC4639;
+  font-weight: bold;
+  height: 100%; }
+
+/* END NAVBAR */
+/* START ITEMS LIST */
+#button-bar {
+  height: 70px;
+  display: flex;
+  flex-direction: row;
+  align-items: center; }
+
+button.button-bar-button {
+  height: 40px;
+  margin: 0px 20px;
+  font-size: 20px;
+  font-family: 'Dosis', sans-serif;
+  border-radius: 6px;
+  background-color: #f9f1ef;
+  border: 0px; }
+
+button.button-bar-button:hover {
+  font-weight: bold;
+  font-size: 25px;
+  color: #BC4639; }
+
+#itemsListContainer {
+  margin: 25px;
+  margin-top: 10px;
+  font-family: 'Nunito Sans'; }
+
+table {
+  width: 100%;
+  border: 1px solid #8E8D8A;
+  height: auto;
+  border-collapse: collapse; }
+
+/* table headers */
+th {
+  font-size: 15px;
+  color: #f9f1ef;
+  padding: 5px 8px;
+  text-align: left;
+  background-color: #E98074;
+  border: 1px solid #8E8D8A; }
+
+th:hover {
+  cursor: pointer; }
+
+/* columns */
+td {
+  border-right: 1px solid #8E8D8A;
+  border-left: 1px solid #8E8D8A;
+  padding: 5px 8px;
+  color: #282828; }
+
+/* rows */
+tr:nth-child(odd) {
+  background-color: #f6dbd6; }
+
+tr:hover {
+  cursor: pointer;
+  font-weight: bold; }
+
+/* END ITEMS LIST */
+/* START MODAL */
+.modal {
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: black;
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+  font-family: 'Nunito Sans', sans-serif; }
+
+/* Modal Content/Box */
+.modal-content {
+  border-radius: 10px;
+  background-color: #fefefe;
+  color: #282828;
+  margin: 12% auto;
+  padding: 20px;
+  width: 50%;
+  /* Could be more or less, depending on screen size */ }
+
+/* Confirmation Modal */
+.confirm-modal-content {
+  border-radius: 10px;
+  background-color: #fefefe;
+  margin: 25% auto;
+  /* 15% from the top and centered */
+  padding: 20px;
+  height: 130px;
+  width: 200px;
+  text-align: center; }
+
+/* confirm delete yes/no buttons */
+button.confirm {
+  height: 40px;
+  margin: 0px 10px;
+  font-size: 15px;
+  font-family: 'Nunito Sans';
+  border-radius: 6px; }
+  button.confirm:hover {
+    cursor: pointer;
+    font-weight: bold; }
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold; }
+
+.close:hover, .close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer; }
+
+/* FORM STYLING */
+/* header on form */
+.modal-content h2 {
+  margin: 8px; }
+
+label {
+  display: grid;
+  padding: 8px;
+  font-size: 18px; }
+
+label input {
+  padding: 7px;
+  border-radius: 4px;
+  font-size: 16px;
+  /* background-color: $lightest-color; */ }
+
+input[type=submit], button {
+  height: 40px;
+  margin: 10px;
+  font-size: 15px;
+  font-family: 'Nunito Sans';
+  border-radius: 6px;
+  cursor: pointer; }
+
+input[type=submit]:hover, button:hover {
+  font-weight: bold; }
+
+/* edit rooms */
+.current-rooms-container {
+  margin: 8px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around; }
+
+.current-room {
+  margin: 10px;
+  padding: 2px; }
+  .current-room:hover {
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 18px; }
+
+/* edit rooms */
+.delete {
+  margin-left: 6px;
+  color: #BC4639;
+  font-size: 22px;
+  font-weight: bold; }
+  .delete:hover {
+    cursor: pointer; }
+
+/* END MODAL */
+/* START SEARCH BAR */
+#searchBarContainer {
+  border: #8E8D8A;
+  border-style: solid;
+  border-width: 1px;
+  padding: 1%;
+  height: 10%;
+  margin-bottom: 1%; }
+
+input {
+  height: 30px;
+  font-size: 20px; }
+
+/* END SEARCH BAR */
+
+/*# sourceMappingURL=App.css.map */

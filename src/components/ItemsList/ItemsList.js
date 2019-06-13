@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../css/ItemsList.css';
+import '../../css/App.scss';
 import Item from '../Item/Item';
 import AddItemModal from '../modals/AddItemModal';
 import EditItemModal from '../modals/EditItemModal';
