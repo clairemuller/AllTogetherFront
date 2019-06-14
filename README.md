@@ -6,6 +6,8 @@ A user can add rooms, locations inside each room (box #1, closet, etc), and fina
 
 I also implemented Google OAuth using an npm package, [React Google Login](https://www.npmjs.com/package/react-google-login). After completion, I refactored the styling to use Sass.
 
+[link to back end repo](https://github.com/clairemuller/AllTogetherBack)
+
 ### Technologies
 * React.js
 * Ruby on Rails
