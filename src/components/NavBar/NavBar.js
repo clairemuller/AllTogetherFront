@@ -8,10 +8,10 @@ class NavBar extends React.Component {
     return (
       <div id='navBar'>
         <div id='navbar-left'>
-          <div id='site-name'>AllTogether</div>
+          <h1>AllTogether</h1>
         </div>
         <div id='navbar-right'>
-          <div id='username'>{this.props.name}</div>
+          <h1>{this.props.name}</h1>
           <GoogleLogout
             buttonText="Logout"
             onLogoutSuccess={this.props.logoutHandler}

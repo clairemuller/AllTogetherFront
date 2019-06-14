@@ -66,7 +66,7 @@ class ItemsList extends React.Component {
   sortTable(n) {
     // https://www.w3schools.com/howto/howto_js_sort_table.asp
     let switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-    let table = document.getElementById("itemsListTable");
+    let table = document.querySelector('table');
     let rows = table.rows;
     switching = true;
     dir = "asc";
@@ -112,17 +112,17 @@ class ItemsList extends React.Component {
 
           <div id='button-bar'>
             {this.props.rooms.length === 0 ?
-                <button className='button-bar-button' type="button"
+                <button type="button"
                   onClick={this.openRoomsModal}>
                   Add Room
                 </button>
               :
               <>
-                <button className='button-bar-button' type="button"
+                <button type="button"
                   onClick={this.toggleAddItemModal}>
                   Add Item
                 </button>
-                <button className='button-bar-button' type="button"
+                <button type="button"
                   onClick={this.openRoomsModal}>
                   Add/Edit Rooms
                 </button>
@@ -130,7 +130,7 @@ class ItemsList extends React.Component {
             }
           </div>
 
-          <table id='itemsListTable'>
+          <table>
             <tbody>
               <tr id='tableHeader'>
                 <th onClick={() => this.sortTable(0)}>ITEM</th>

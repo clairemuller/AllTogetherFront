@@ -5,7 +5,6 @@ $border-color: #8E8D8A;
 $text-color: #282828;
 
 /* START APP */
-/* do I need this? */
 @font-face {
   font-family: 'Nunito Sans', sans-serif;
   src: url(../css/fonts/NunitoSans-Regular.ttf);
@@ -70,32 +69,27 @@ button:hover {
   display: flex;
   flex-direction: row;
   font-family: 'Dosis', sans-serif;
-}
-
-#navbar-left {
-  width: 50%;
-  display: flex;
-  align-items: center;
-}
-
-#site-name {
-  margin-left: 3%;
-  font-weight: bold;
-  color: $lightest-color;
-  font-size: 40px;
-}
-
-#navbar-right {
-  width: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-}
-
-#username {
-  color: $lightest-color;
-  font-size: 30px;
-  margin-right: 2%;
+  #navbar-left, #navbar-right {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    h1 {
+      color: $lightest-color;
+    }
+  }
+  #navbar-left {
+    h1 {
+      margin-left: 3%;
+      font-size: 40px;
+    }
+  }
+  #navbar-right {
+    justify-content: flex-end;
+    h1 {
+      margin-right: 2%;
+      font-size: 30px;
+    }
+  }
 }
 
 button.google-button {
@@ -123,20 +117,19 @@ button.google-button {
   display: flex;
   flex-direction: row;
   align-items: center;
-}
-
-button.button-bar-button {
-  height: 40px;
-  margin: 0px 20px;
-  font-size: 20px;
-  font-family: 'Dosis', sans-serif;
-  border-radius: 6px;
-  background-color: $lightest-color;
-  border: 0px;
-  &:hover {
-    font-weight: bold;
-    font-size: 25px;
-    color: $darkest-color;
+  button {
+    height: 40px;
+    margin: 0px 20px;
+    font-size: 20px;
+    font-family: 'Dosis', sans-serif;
+    border-radius: 6px;
+    background-color: $lightest-color;
+    border: 0px;
+    &:hover {
+      font-weight: bold;
+      font-size: 25px;
+      color: $darkest-color;
+    }
   }
 }
 
@@ -151,36 +144,31 @@ table {
   border: 1px solid $border-color;
   height: auto;
   border-collapse: collapse;
-}
-
-/* table headers */
-th {
-  font-size: 15px;
-  color: $lightest-color;
-  padding: 5px 8px;
-  text-align: left;
-  background-color: $medium-color;
-  border: 1px solid $border-color;
-  &:hover {
-    cursor: pointer;
+  th {
+    font-size: 15px;
+    color: $lightest-color;
+    padding: 5px 8px;
+    text-align: left;
+    background-color: $medium-color;
+    border: 1px solid $border-color;
+    &:hover {
+      cursor: pointer;
+    }
   }
-}
-
-/* columns */
-td {
-  border-right: 1px solid $border-color;
-  border-left: 1px solid $border-color;
-  padding: 5px 8px;
-  color: $text-color;
-}
-
-tr {
-  &:nth-child(odd) {
-    background-color: #f6dbd6;
-  }
-  &:hover {
-    cursor: pointer;
-    font-weight: bold;
+  tr {
+    td {
+      border-right: 1px solid $border-color;
+      border-left: 1px solid $border-color;
+      padding: 5px 8px;
+      color: $text-color;
+    }
+    &:nth-child(odd) {
+      background-color: #f6dbd6;
+    }
+    &:hover {
+      cursor: pointer;
+      font-weight: bold;
+    }
   }
 }
 /* END ITEMS LIST */
@@ -248,6 +236,7 @@ button.confirm {
     cursor: pointer;
   }
 }
+
 /* FORM STYLING */
 label {
   display: grid;
@@ -259,7 +248,6 @@ label {
     font-size: 16px;
   }
 }
-
 
 input[type=submit], button {
   height: 40px;

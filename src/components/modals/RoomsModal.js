@@ -253,9 +253,3 @@ class RoomsModal extends React.Component {
 }
 
 export default RoomsModal;
-
-// <span
-//   className='delete'
-//   onClick={(event) => this.handleLocationDelete(ll.id, event)}>
-//   &times;
-// </span>
