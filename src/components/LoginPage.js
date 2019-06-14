@@ -43,8 +43,8 @@ class LoginPage extends React.Component {
     return (
       <div id='login-main'>
         <div id='login-container'>
-          <h1 id='login-h1'>AllTogether</h1>
-          <h5 id='login-h5'>a home inventory app</h5>
+          <h1>AllTogether</h1>
+          <h5>a home inventory app</h5>
           <div id='google-button-container'>
             <GoogleLogin
               clientId={clientId}

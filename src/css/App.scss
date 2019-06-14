@@ -44,20 +44,22 @@ button:hover {
   text-align: center;
   padding: 40px;
   font-family: 'Dosis', sans-serif;
-}
-
-#login-h1 {
-  margin: 0px;
-  font-size: 70px;
-  padding-bottom: 10px;
-  color: $darkest-color;
-}
-
-#login-h5 {
-  margin: 0px;
-  font-size: 30px;
-  padding-bottom: 20px;
-  color: $medium-color;
+  h1 {
+    margin: 0px;
+    font-size: 70px;
+    padding-bottom: 10px;
+    color: $darkest-color;
+  }
+  h5 {
+    margin: 0px;
+    font-size: 30px;
+    padding-bottom: 20px;
+    color: $medium-color;
+  }
+  form {
+    width: 20%;
+    display: inline-block;
+  }
 }
 /* END LOGIN PAGE */
 
