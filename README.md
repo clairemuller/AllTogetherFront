@@ -7,6 +7,8 @@ A user can add rooms, locations inside each room (box #1, closet, etc), and fina
 
 I also implemented Google OAuth using an npm package, [React Google Login](https://www.npmjs.com/package/react-google-login). After completing this project, I refactored the CSS using SASS.
 
+![site preview](preview.png)
+
 ### How does it work?
 The site's backend uses Ruby on Rails to created nested belongs_to/has_many relationships. Each item belongs to a location, with each location belonging to a room. A new user will be prompted to first add the rooms in their home, as well as any locations inside of each room that they wish to add. Items can then be created and added to rooms/locations, with a category to make things even more organized. Users can optionally add a note to keep track of any additional info they wish, such as the price of an item or a reminder.
 
