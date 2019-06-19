@@ -4,6 +4,7 @@ import Item from '../Item/Item';
 import AddItemModal from '../modals/AddItemModal';
 import EditItemModal from '../modals/EditItemModal';
 import RoomsModal from '../modals/RoomsModal';
+import HelpModal from '../modals/HelpModal';
 
 class ItemsList extends React.Component {
   constructor(props) {
@@ -13,6 +14,7 @@ class ItemsList extends React.Component {
       editItemModalIsOpen: false,
       addItemModalIsOpen: false,
       roomsModalIsOpen: false,
+      helpModalIsOpen: false,
       clickedItem: ''
     }
   }
@@ -56,6 +58,12 @@ class ItemsList extends React.Component {
     }
     this.setState({
       roomsModalIsOpen: !this.state.roomsModalIsOpen
+    })
+  }
+
+  toggleHelpModal = () => {
+    this.setState({
+      helpModalIsOpen: !this.state.helpModalIsOpen
     })
   }
 
@@ -111,11 +119,17 @@ class ItemsList extends React.Component {
         <div id='itemsListContainer'>
 
           <div id='button-bar'>
-            {this.props.rooms.length === 0 ?
+            {rooms.length === 0 ?
+              <>
                 <button type="button"
                   onClick={this.openRoomsModal}>
                   Add Room
                 </button>
+                <button type="button"
+                  onClick={this.toggleHelpModal}>
+                  Help
+                </button>
+              </>
               :
               <>
                 <button type="button"
@@ -125,6 +139,10 @@ class ItemsList extends React.Component {
                 <button type="button"
                   onClick={this.openRoomsModal}>
                   Add/Edit Rooms
+                </button>
+                <button type="button"
+                  onClick={this.toggleHelpModal}>
+                  Help
                 </button>
               </>
             }
@@ -189,6 +207,14 @@ class ItemsList extends React.Component {
             userId={userId}
             rooms={rooms}
             onStateUpdate={this.handleStateUpdate}
+            />
+          :
+          null}
+
+        {this.state.helpModalIsOpen ?
+          <HelpModal
+            show={this.state.helpModalIsOpen}
+            onClose={this.toggleHelpModal}
             />
           :
           null}

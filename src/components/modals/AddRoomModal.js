@@ -1,6 +1,7 @@
 import React from 'react';
 import '../../css/App.scss';
 const URL = 'https://all-together-app-backend.herokuapp.com/users/'
+// const URL = 'http://localhost:3000/users/'
 
 class AddRoomModal extends React.Component {
   constructor(props) {
@@ -60,7 +61,7 @@ class AddRoomModal extends React.Component {
             {this.state.room.length === 0 ? null :
 
             <label>
-              Add locations:
+              Add locations (comma separated):
               <input name="locations"
                 onChange={this.handleChange}
                 required />

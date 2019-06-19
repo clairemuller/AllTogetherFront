@@ -3,6 +3,7 @@ import '../css/App.scss';
 import MainContainer from './MainContainer/MainContainer'
 import LoginPage from './LoginPage'
 const URL = 'https://all-together-app-backend.herokuapp.com/users'
+// const URL = 'http://localhost:3000/users'
 
 class App extends React.Component {
   constructor(props) {

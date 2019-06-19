@@ -137,6 +137,10 @@ button.google-button {
   margin: 25px;
   margin-top: 10px;
   font-family: 'Nunito Sans';
+  #loading {
+    text-align: center;
+    font-size: 30px;
+  }
 }
 
 table {
@@ -195,8 +199,13 @@ table {
   margin: 12% auto;
   padding: 20px;
   width: 50%; /* Could be more or less, depending on screen size */
-  h2 {
+  h2, p {
     margin: 8px;
+  }
+  p {
+    line-height: 28px;
+    margin-top: 16px;
+    margin-bottom: 16px;
   }
 }
 

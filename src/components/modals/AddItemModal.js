@@ -1,6 +1,7 @@
 import React from 'react';
 import '../../css/App.scss';
 const URL = 'https://all-together-app-backend.herokuapp.com/users/'
+// const URL = 'http://localhost:3000/users/'
 
 class AddItemModal extends React.Component {
   constructor(props) {
