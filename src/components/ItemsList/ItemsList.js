@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../css/App.scss';
-import SearchBar from '../SearchBar/SearchBar';
+// import SearchBar from '../SearchBar/SearchBar';
 import Item from '../Item/Item';
 import AddItemModal from '../modals/AddItemModal';
 import EditItemModal from '../modals/EditItemModal';
@@ -149,7 +149,8 @@ class ItemsList extends React.Component {
             }
           </div>
 
-          <SearchBar />
+          {// <SearchBar />
+          }
 
           <table>
             <tbody>
